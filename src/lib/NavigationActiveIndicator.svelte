@@ -24,7 +24,7 @@
 
 	span {
 		position: absolute;
-		top: calc(100% + var(--cdb-navigation-indicator-height));
+		top: calc(100% + 2 * var(--cdb-navigation-indicator-height));
 		left: 0;
 		display: inline-block;
 		width: calc(100% - (var(--cdb-indicator-width)));
