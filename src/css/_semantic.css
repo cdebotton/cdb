@@ -1,0 +1,27 @@
+@import './_core.css';
+
+:root {
+	--cdb-semantic-padding-none: var(--cdb-core-spacing-0);
+	--cdb-semantic-padding-extra-small: var(--cdb-core-spacing-1);
+	--cdb-semantic-padding-small: var(--cdb-core-spacing-3);
+	--cdb-semantic-padding-medium: var(--cdb-core-spacing-4);
+	--cdb-semantic-padding-large: var(--cdb-core-spacing-5);
+
+	--cdb-semantic-width-xs: var(--cdb-core-spacing-2);
+	--cdb-semantic-width-small: var(--cdb-core-spacing-4);
+
+	--cdb-semantic-height-small: var(--cdb-core-spacing-1);
+	--cdb-semantic-height-md: var(--cdb-core-spacing-2);
+
+	--cdb-semantic-tracking-tightest: var(--cdb-core-tracking-1);
+	--cdb-semantic-tracking-tight: var(--cdb-core-tracking-2);
+	--cdb-semantic-tracking-normal: var(--cdb-core-tracking-5);
+
+	--cdb-semantic-font-size-sm: var(--cdb-core-font-size-1);
+	--cdb-semantic-font-size-md: var(--cdb-core-font-size-2);
+	--cdb-semantic-font-size-lg: var(--cdb-core-font-size-4);
+	--cdb-semantic-font-size-xl: var(--cdb-core-font-size-7);
+	--cdb-semantic-font-size-2xl: var(--cdb-core-font-size-8);
+
+	--cdb-semantic-color-background: var(--cdb-semantic-color-grayscale-800);
+}
