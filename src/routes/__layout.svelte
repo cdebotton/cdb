@@ -1,10 +1,10 @@
 <script>
+	import LogoLink from '$lib/LogoLink.svelte';
 	import Navigation from '$lib/Navigation.svelte';
 	import NavigationLink from '$lib/NavigationLink.svelte';
 	import Page from '$lib/Page.svelte';
 
 	import '../css/app.css';
-	import LogoLink from '$lib/LogoLink.svelte';
 </script>
 
 <Page>
@@ -30,9 +30,7 @@
 		display: grid;
 		align-items: baseline;
 		padding: calc(var(--cdb-page-padding) * 1.5) 0;
-		gap: var(--cdb-nav-gap);
 		grid-auto-flow: row;
-		justify-items: center;
 	}
 
 	main {

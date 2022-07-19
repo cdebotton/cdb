@@ -2,14 +2,12 @@
 	import HeaderLink from './HeaderLink.svelte';
 	import NavigationActiveIndicator from './NavigationActiveIndicator.svelte';
 
-	/** @type {string?} */
-	export let label = null;
 	/** @type {string} */
 	export let href;
 </script>
 
 <li>
-	<HeaderLink {label} {href} let:active>
+	<HeaderLink {href} let:active>
 		<span>
 			<slot />
 		</span>
@@ -22,7 +20,6 @@
 <style>
 	li {
 		--cdb-header-link-label-size: var(--cdb-semantic-font-size-lg);
-		--cdb-header-link-annotation-size: var(--cdb-semantic-font-size-sm);
 		--cdb-navigation-vertical-gap: var(--cdb-semantic-padding-small);
 
 		position: relative;

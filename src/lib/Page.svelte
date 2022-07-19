@@ -1,4 +1,8 @@
-<div>
+<script>
+	function handleMove() {}
+</script>
+
+<div on:pointermove={handleMove}>
 	<slot />
 </div>
 

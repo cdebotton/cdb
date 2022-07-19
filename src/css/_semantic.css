@@ -16,6 +16,8 @@
 	--cdb-semantic-tracking-tightest: var(--cdb-core-tracking-1);
 	--cdb-semantic-tracking-tight: var(--cdb-core-tracking-2);
 	--cdb-semantic-tracking-normal: var(--cdb-core-tracking-5);
+	--cdb-semantic-tracking-wide: var(--cdb-core-tracking-7);
+	--cdb-semantic-tracking-widest: var(--cdb-core-tracking-8);
 
 	--cdb-semantic-font-size-sm: var(--cdb-core-font-size-1);
 	--cdb-semantic-font-size-md: var(--cdb-core-font-size-2);

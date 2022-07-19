@@ -1,21 +1,23 @@
 <script>
 	import { page } from '$app/stores';
-	import { fly } from 'svelte/transition';
 
 	/** @type {string} */
 	export let href;
 	/** @type {boolean} */
 	export let exact = false;
-	/** @type {string?} */
-	export let label = null;
 
-	$: active = exact ? href === $page.url.pathname : $page.url.pathname.startsWith(href);
+	/** @type {boolean} */
+	let active;
+
+	$: if (exact) {
+		active = href === $page.url.pathname;
+	} else {
+		active = $page.url.pathname.startsWith(href);
+	}
 </script>
 
 <a sveltekit:prefetch {href}>
-	{#if label !== null && active}
-		<span transition:fly={{ x: 10 }} class="annotation" lang="ja">{label}</span>
-	{/if}
+	<slot {active} name="annotation" />
 	<span class="label">
 		<slot {active} />
 	</span>
@@ -36,15 +38,6 @@
 		gap: var(--cdb-navigation-vertical-gap);
 		grid-row: min-content var(--cdb-indicator-height);
 		text-decoration: none;
-	}
-
-	.annotation {
-		position: absolute;
-		bottom: calc(100% + var(--cdb-navigation-vertical-gap));
-		padding: 0 var(--cdb-semantic-width-xs);
-		font-size: var(--cdb-header-link-annotation-size, 0.5em);
-		font-weight: 300;
-		line-height: 1;
 	}
 
 	.label {
