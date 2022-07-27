@@ -43,10 +43,9 @@
 
 <style>
 	h1 {
-		--cdb-header-link-label-size: var(--cdb-semantic-font-size-2xl);
-		--cdb-header-link-annotation-size: var(--cdb-semantic-font-size-sm);
+		--local-padding: var(--space-2);
 		display: inline-block;
-		padding: var(--cdb-core-spacing-3) 0;
+		padding: var(--local-padding) 0;
 		background: linear-gradient(
 			to bottom right,
 			hsl(200 100% 46.6%) 0%,
@@ -58,16 +57,17 @@
 		background-repeat: repeat;
 		background-size: 400vw 400vh;
 		color: var(--cdb-page-background);
+		font-size: var(--font-size-5);
 		font-weight: 900;
-		letter-spacing: var(--cdb-header-tracking);
+		letter-spacing: var(--tracking--3);
 		text-align: center;
 		text-transform: uppercase;
 	}
 
 	.annotation {
 		position: absolute;
-		bottom: calc(100% + var(--cdb-core-spacing-4));
-		padding: 0 var(--cdb-semantic-width-small);
+		bottom: calc(100% + var(--local-padding) + var(--space-1));
+		padding: 0 var(--space-2);
 		background: linear-gradient(
 			to bottom right,
 			hsl(200 100% 46.6%) 0%,
@@ -79,20 +79,20 @@
 		background-clip: text;
 		background-size: 400vw 400vh;
 		color: transparent;
-		font-size: var(--cdb-header-link-annotation-size, 0.5em);
-		font-weight: 900;
-		letter-spacing: var(--cdb-semantic-tracking-widest);
+		font-size: var(--font-size-2, 0.5em);
+		font-weight: 600;
+		letter-spacing: var(--tracking-1);
 		line-height: 1;
 		opacity: 0;
 		pointer-events: none;
-		transform: translateX(var(--cdb-core-spacing-3));
+		transform: translateY(var(--space-1));
 		transition: all 275ms ease-out;
 		user-select: none;
 	}
 
 	.annotation.active {
 		opacity: 1;
-		transform: translateX(0);
+		transform: translateY(0);
 		transition: all 175ms ease-in;
 	}
 </style>

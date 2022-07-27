@@ -19,22 +19,20 @@
 
 <style>
 	li {
-		--cdb-header-link-label-size: var(--cdb-semantic-font-size-lg);
-		--cdb-navigation-vertical-gap: var(--cdb-semantic-padding-small);
-
 		position: relative;
 	}
 
 	li:nth-of-type(n + 2)::before {
 		display: inline;
-		padding: 0 var(--cdb-nav-item-gap);
+		padding: 0 var(--space-1);
 		content: '・';
-		font-size: var(--cdb-header-link-label-size);
+		font-size: 1em;
 		font-weight: 900;
 		line-height: 1;
 	}
 
 	span {
+		font-size: var(--font-size-3);
 		font-weight: 300;
 		text-transform: uppercase;
 	}

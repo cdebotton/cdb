@@ -7,11 +7,8 @@
 </div>
 
 <style>
-	:root {
-		--cdb-page-padding: var(--cdb-semantic-padding-large);
-	}
-
 	div {
+		--page-padding: var(--space-5);
 		display: grid;
 		height: 100%;
 		isolation: isolate;

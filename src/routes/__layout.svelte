@@ -1,10 +1,10 @@
 <script>
+	import '../css/app.css';
+
 	import LogoLink from '$lib/LogoLink.svelte';
 	import Navigation from '$lib/Navigation.svelte';
 	import NavigationLink from '$lib/NavigationLink.svelte';
 	import Page from '$lib/Page.svelte';
-
-	import '../css/app.css';
 </script>
 
 <Page>
@@ -22,18 +22,14 @@
 </Page>
 
 <style>
-	:root {
-		--cdb-header-tracking: var(--cdb-semantic-tracking-tight);
-	}
-
 	header {
 		display: grid;
 		align-items: baseline;
-		padding: calc(var(--cdb-page-padding) * 1.5) 0;
+		padding: calc(var(--page-padding)) 0;
 		grid-auto-flow: row;
 	}
 
 	main {
-		padding: 0 var(--cdb-page-padding) var(--cdb-page-padding);
+		padding: 0 var(--page-padding) var(--page-padding);
 	}
 </style>

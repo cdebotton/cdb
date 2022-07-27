@@ -1,35 +1,55 @@
 :root {
-	--cdb-core-spacing-0: 0; /* 0px */
-	--cdb-core-spacing-1: 0.125rem; /* 2px */
-	--cdb-core-spacing-2: 0.25rem; /* 4px */
-	--cdb-core-spacing-3: 0.5rem; /* 8px */
-	--cdb-core-spacing-4: 1rem; /* 16px */
-	--cdb-core-spacing-5: 2rem; /* 32px */
-	--cdb-core-spacing-6: 4rem; /* 64px */
-	--cdb-core-spacing-7: 8rem; /* 128px */
-	--cdb-core-spacing-8: 16rem; /* 256px */
-	--cdb-core-spacing-9: 32rem; /* 512px */
-	--cdb-core-spacing-10: 64rem; /* 1024px */
+	--base-unit: 0.25rem; /* 4px */
+	--base-unit-half: calc(var(--base-unit) / 2); /* 2px */
 
-	--cdb-core-tracking-1: -0.075em;
-	--cdb-core-tracking-2: -0.05em;
-	--cdb-core-tracking-3: -0.025em;
-	--cdb-core-tracking-4: -0.0125em;
-	--cdb-core-tracking-5: 0;
-	--cdb-core-tracking-6: 0.125em;
-	--cdb-core-tracking-7: 0.25em;
-	--cdb-core-tracking-8: 0.5em;
-	--cdb-core-tracking-9: 1em;
+	/* Space, 8x8 grid */
+	--space-1\2: var(--base-unit-half); /* 2px */
+	--space-1: var(--base-unit); /* 4px */
+	--space-2: calc(var(--base-unit) * 2); /* 8px */
+	--space-3: calc(var(--base-unit) * 4); /* 16px */
+	--space-4: calc(var(--base-unit) * 6); /* 24px */
+	--space-5: calc(var(--base-unit) * 8); /* 32px */
+	--space-6: calc(var(--base-unit) * 10); /* 40px */
+	--space-7: calc(var(--base-unit) * 12); /* 48px */
+	--space-8: calc(var(--base-unit) * 16); /* 64px */
+	--space-9: calc(var(--base-unit) * 20); /* 80px */
+	--space-10: calc(var(--base-unit) * 24); /* 96px */
 
-	--cdb-core-font-size-1: 0.8rem; /* 12.80px */
-	--cdb-core-font-size-2: 1rem; /* 16px */
-	--cdb-core-font-size-3: 1.25rem; /* 20px */
-	--cdb-core-font-size-4: 1.563rem; /* 25px */
-	--cdb-core-font-size-5: 1.953rem; /* 31.25px */
-	--cdb-core-font-size-6: 2.441rem; /* 39.06px */
-	--cdb-core-font-size-7: 3.052rem; /* 48.83 px*/
-	--cdb-core-font-size-7: 3.052rem; /* 48.83 px*/
-	--cdb-core-font-size-8: 3.815rem; /* 61.04 px*/
+	/* Tracking */
+	--tracking-base-unit: 0.0125em;
 
-	--cdb-semantic-color-grayscale-800: hsl(0 5% 98%);
+	--tracking--4: calc(var(--tracking-base-unit) * -6); /* -0.075em */
+	--tracking--3: calc(var(--tracking-base-unit) * -4); /* -0.05em */
+	--tracking--2: calc(var(--tracking-base-unit) * -2); /* -0.025em */
+	--tracking--1: calc(var(--tracking-base-unit) * -1); /* -0.0125em */
+	--tracking-0: 0;
+	--tracking-1: calc(var(--tracking-base-unit) * 1); /* 0.0125em */
+	--tracking-2: calc(var(--tracking-base-unit) * 2); /* 0.025em */
+	--tracking-3: calc(var(--tracking-base-unit) * 4); /* 0.05em */
+	--tracking-4: calc(var(--tracking-base-unit) * 6); /* 0.075em */
+
+	/* Leading */
+	--line-height-base-unit: 1;
+
+	--leading-tight: calc(var(--line-height-base-unit) * 0.72);
+	--leading-none: var(--line-height-base-unit);
+	--leading-normal: calc(var(--line-height-base-unit) * 1.25);
+	--leading-loose: calc(var(--line-height-base-unit) * 1.5);
+
+	/* Font sizes */
+	--font-base-unit: 1rem;
+	--font-scale: 1.414;
+
+	--font-size-1: calc(var(--font-base-unit) / var(--font-scale)); /* 12.80px */
+	--font-size-2: var(--font-base-unit); /* 16px */
+	--font-size-3: calc(var(--font-size-2) * var(--font-scale)); /* 20px */
+	--font-size-4: calc(var(--font-size-3) * var(--font-scale)); /* 25px */
+	--font-size-5: calc(var(--font-size-4) * var(--font-scale)); /* 31.25px */
+	--font-size-6: calc(var(--font-size-5) * var(--font-scale)); /* 39.06px */
+	--font-size-7: calc(var(--font-size-6) * var(--font-scale)); /* 48.83 px*/
+	--font-size-8: calc(var(--font-size-7) * var(--font-scale)); /* 48.83 px*/
+	--font-size-9: calc(var(--font-size-8) * var(--font-scale)); /* 61.04 px*/
+
+	/* Colors */
+	--color-grayscale-800: hsl(0 5% 98%);
 }

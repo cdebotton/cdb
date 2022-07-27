@@ -17,19 +17,16 @@
 <span out:send={{ key }} in:receive={{ key }} />
 
 <style>
-	:root {
-		--cdb-indicator-width: var(--cdb-semantic-width-small);
-		--cdb-indicator-margin: calc((var(--cdb-semantic-width-small) / 2));
-	}
-
 	span {
+		--height: var(--space-1\2);
+
 		position: absolute;
-		top: calc(100% + 2 * var(--cdb-navigation-indicator-height));
+		top: calc(100% + var(--space-1));
 		left: 0;
 		display: inline-block;
-		width: calc(100% - (var(--cdb-indicator-width)));
-		height: var(--cdb-navigation-indicator-height);
-		margin: 0 var(--cdb-indicator-margin);
+		width: calc(100% - var(--space-2));
+		height: var(--space-1\2);
+		margin: 0 var(--space-1);
 		background-color: black;
 	}
 </style>

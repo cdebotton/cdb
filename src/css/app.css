@@ -1,7 +1,7 @@
-@import './_semantic.css';
+@import './_core.css';
 
 :root {
-	--cdb-page-background: var(--cdb-semantic-color-background);
+	--cdb-page-background: var(--color-grayscale-800);
 }
 
 *,
