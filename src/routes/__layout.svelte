@@ -9,7 +9,7 @@
 
 <Page>
 	<header>
-		<LogoLink label="クリスチャン・デバッタン" exact href="/">Christian de Botton</LogoLink>
+		<LogoLink exact href="/">Christian de Botton</LogoLink>
 		<Navigation>
 			<NavigationLink href="/code">Code</NavigationLink>
 			<NavigationLink href="/photography">Photography</NavigationLink>
@@ -24,12 +24,20 @@
 <style>
 	header {
 		display: grid;
-		align-items: baseline;
-		padding: calc(var(--page-padding)) 0;
+		justify-content: center;
+		padding: var(--page-padding);
 		grid-auto-flow: row;
 	}
 
 	main {
 		padding: 0 var(--page-padding) var(--page-padding);
+	}
+
+	@media screen and (min-width: 50rem) {
+		header {
+			align-items: baseline;
+			justify-content: space-between;
+			grid-auto-flow: column;
+		}
 	}
 </style>
