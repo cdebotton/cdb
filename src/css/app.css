@@ -1,9 +1,5 @@
 @import './_core.css';
 
-:root {
-	--cdb-page-background: var(--color-grayscale-800);
-}
-
 *,
 *::before,
 *::after {
@@ -19,7 +15,7 @@
 html {
 	display: grid;
 	height: 100%;
-	background-color: var(--cdb-page-background);
+	background-color: var(--color-grayscale-8);
 }
 
 body {

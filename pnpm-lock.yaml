@@ -1,12 +1,13 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@motionone/dom': 10.13.1
   '@playwright/test': ^1.24.1
   '@sveltejs/adapter-auto': 1.0.0-next.64
   '@sveltejs/kit': 1.0.0-next.396
   '@threlte/core': ^4.1.3
   '@threlte/extras': ^4.0.1
-  '@types/three': ^0.142.0
+  '@types/three': ^0.143.0
   '@yushijinhun/three-minifier-rollup': ^0.4.0
   eslint: ^8.20.0
   eslint-config-prettier: ^8.3.0
@@ -23,22 +24,23 @@ specifiers:
   stylelint-order: ^5.0.0
   svelte: ^3.44.0
   svelte-check: ^2.7.1
-  three: ^0.142.0
+  three: ^0.143.0
   typescript: ^4.7.4
   vite: ^3.0.3
   vite-imagetools: ^4.0.4
 
 dependencies:
   '@threlte/core': 4.1.3
-  '@threlte/extras': 4.0.1_three@0.142.0
+  '@threlte/extras': 4.0.1_three@0.143.0
   motion: 10.13.1
-  three: 0.142.0
+  three: 0.143.0
 
 devDependencies:
+  '@motionone/dom': 10.13.1
   '@playwright/test': 1.24.1
   '@sveltejs/adapter-auto': 1.0.0-next.64
   '@sveltejs/kit': 1.0.0-next.396_svelte@3.49.0+vite@3.0.3
-  '@types/three': 0.142.0
+  '@types/three': 0.143.0
   '@yushijinhun/three-minifier-rollup': 0.4.0
   eslint: 8.20.0
   eslint-config-prettier: 8.5.0_eslint@8.20.0
@@ -173,7 +175,6 @@ packages:
       '@motionone/types': 10.13.0
       '@motionone/utils': 10.13.1
       tslib: 2.4.0
-    dev: false
 
   /@motionone/dom/10.13.1:
     resolution: {integrity: sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==}
@@ -184,14 +185,12 @@ packages:
       '@motionone/utils': 10.13.1
       hey-listen: 1.0.8
       tslib: 2.4.0
-    dev: false
 
   /@motionone/easing/10.13.1:
     resolution: {integrity: sha512-INEsInHHDHVgx0dp5qlXi1lMXBqYicgLMMSn3zfGzaIvcaEbI1Uz8BoyNV4BiclTupG7RYIh+T6BU83ZcEe74g==}
     dependencies:
       '@motionone/utils': 10.13.1
       tslib: 2.4.0
-    dev: false
 
   /@motionone/generators/10.13.1:
     resolution: {integrity: sha512-+HK5u2YcNJCckTTqfOLgSVcrWv2z1dVwrSZEMVJuAh0EnWEWGDJRvMBoPc0cFf/osbkA2Rq9bH2+vP0Ex/D8uw==}
@@ -199,7 +198,6 @@ packages:
       '@motionone/types': 10.13.0
       '@motionone/utils': 10.13.1
       tslib: 2.4.0
-    dev: false
 
   /@motionone/svelte/10.13.1:
     resolution: {integrity: sha512-9d73nH4Uow0zC68ubSRYbmN/e2V7t16dSoDrBU1TfY2fue4ol+NJo8cd8ptT+5RRKmslmB3fg4swmDcGkOslJA==}
@@ -210,7 +208,6 @@ packages:
 
   /@motionone/types/10.13.0:
     resolution: {integrity: sha512-qegk4qg8U1N9ZwAJ187BG3TkZz1k9LP/pvNtCSlqdq/PMUDKlCFG4ZnjJ481P0IOH/vIw1OzIbKIuyg0A3rk9g==}
-    dev: false
 
   /@motionone/utils/10.13.1:
     resolution: {integrity: sha512-TjDPTIppaf3ofBXQv4ZzAketJgN0sclALXfZ6mfrkjJkOy83mLls9744F+6S+VKCpBmvbZcBY4PQfrfhAfeMtA==}
@@ -218,7 +215,6 @@ packages:
       '@motionone/types': 10.13.0
       hey-listen: 1.0.8
       tslib: 2.4.0
-    dev: false
 
   /@motionone/vue/10.13.1:
     resolution: {integrity: sha512-Zg0FnLWVLFhpAd3fh3avkTgbYITE75ldgwh2VMz346uwOpKz2gPHyYq5CmoW/wzUMvfCMfjy1dqmzZThii71ew==}
@@ -348,10 +344,10 @@ packages:
     resolution: {integrity: sha512-JiSwMdpZQG735Xt1OANMuIkBFIlwnQz3Y9wMxu9qQt+ELl2R+WDbC6p8GY6AYAlXUE5zEeuDEi1jP8f1jvv/aA==}
     dev: false
 
-  /@threlte/extras/4.0.1_three@0.142.0:
+  /@threlte/extras/4.0.1_three@0.143.0:
     resolution: {integrity: sha512-a5r5VtdpNoqYMDPekyXfDtgtjellv1BtA9c0C8lO95pjy8kad5XZrE3PLhNJemFPd0QuQax3iPxfefCKsVUtqQ==}
     dependencies:
-      troika-three-text: 0.46.4_three@0.142.0
+      troika-three-text: 0.46.4_three@0.143.0
     transitivePeerDependencies:
       - three
     dev: false
@@ -390,8 +386,8 @@ packages:
       '@types/node': 18.0.6
     dev: true
 
-  /@types/three/0.142.0:
-    resolution: {integrity: sha512-YNVnlqthfgqsxKuSNbT/G2r+ha/6x+aJm7kvjT+sxa4jUROw/KOPm5xzGj33sk1+Librg6NwH/wJ6LCDX33UZg==}
+  /@types/three/0.143.0:
+    resolution: {integrity: sha512-c5PonXOt8xk5q4ygmyjOX4Ec+FA7gwfdcMT/PveE9xrJs/0DDcf2lJkWrhEcmvx2ZefQCQBcogABnGqB0P4OsA==}
     dependencies:
       '@types/webxr': 0.5.0
     dev: true
@@ -1726,7 +1722,6 @@ packages:
 
   /hey-listen/1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
-    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
@@ -3249,8 +3244,8 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /three/0.142.0:
-    resolution: {integrity: sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==}
+  /three/0.143.0:
+    resolution: {integrity: sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==}
     dev: false
 
   /through2/0.6.5:
@@ -3283,24 +3278,24 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /troika-three-text/0.46.4_three@0.142.0:
+  /troika-three-text/0.46.4_three@0.143.0:
     resolution: {integrity: sha512-Qsv0HhUKTZgSmAJs5wvO7YlBoJSP9TGPLmrg+K9pbQq4lseQdcevbno/WI38bwJBZ/qS56hvfqEzY0zUEFzDIw==}
     peerDependencies:
       three: '>=0.103.0'
     dependencies:
       bidi-js: 1.0.2
-      three: 0.142.0
-      troika-three-utils: 0.46.0_three@0.142.0
+      three: 0.143.0
+      troika-three-utils: 0.46.0_three@0.143.0
       troika-worker-utils: 0.46.0
       webgl-sdf-generator: 1.1.1
     dev: false
 
-  /troika-three-utils/0.46.0_three@0.142.0:
+  /troika-three-utils/0.46.0_three@0.143.0:
     resolution: {integrity: sha512-llHyrXAcwzr0bpg80GxsIp73N7FuImm4WCrKDJkAqcAsWmE5pfP9+Qzw+oMWK1P/AdHQ79eOrOl9NjyW4aOw0w==}
     peerDependencies:
       three: '>=0.103.0'
     dependencies:
-      three: 0.142.0
+      three: 0.143.0
     dev: false
 
   /troika-worker-utils/0.46.0:
@@ -3318,7 +3313,6 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
 
   /tunnel-agent/0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
