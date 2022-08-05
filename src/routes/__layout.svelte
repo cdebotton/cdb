@@ -1,13 +1,12 @@
 <script>
 	import '../css/app.css';
 
-	import { crossfade } from 'svelte/transition';
-
 	import Link from '$lib/Link.svelte';
-	import { animation } from '$lib/animation';
+	import Logo from '$lib/Logo.svelte';
+	import NavItem from '$lib/NavItem.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig} */
-	let bg = {
+	let config = {
 		backgroundPosition: '0 -300vh',
 		options: {
 			duration: 7.5,
@@ -16,64 +15,28 @@
 			direction: 'alternate'
 		}
 	};
-
-	let key = Symbol.for('active');
-	let [send, receive] = crossfade({
-		fallback() {
-			return {
-				duration: 75,
-				css: (t) => `
-					opacity: ${t};
-					transform: scaleX(${t});
-				`
-			};
-		}
-	});
 </script>
 
 <div>
 	<header>
 		<Link let:active href="/" exact>
-			<h1 class="logo-link">
-				<span class:active use:animation={bg} lang="ja" class="logo-label">
-					クリスチャン・デバッタン
-				</span>
-				<span use:animation={bg} class="logo-text">Christian de Botton</span>
-			</h1>
+			<Logo {config} {active} />
 		</Link>
 		<nav>
 			<ul>
-				<li class="link-nav">
+				<li>
 					<Link let:active href="/code">
-						<span class="link-label">
-							{#if active}
-								<span class="indicator" in:receive={{ key }} out:send={{ key }} />
-							{/if}
-							<span class="link-label-text">コード</span>
-						</span>
-						<span class="link-text">Code</span>
+						<NavItem {config} {active} label="コード">Code</NavItem>
 					</Link>
 				</li>
-				<li class="link-nav">
+				<li>
 					<Link let:active href="/photography">
-						<span class="link-label">
-							{#if active}
-								<span class="indicator" in:receive={{ key }} out:send={{ key }} />
-							{/if}
-							<span class="link-label-text">写真撮影</span>
-						</span>
-						<span class="link-text">Photography</span>
+						<NavItem {config} {active} label="写真撮影">Photography</NavItem>
 					</Link>
 				</li>
-				<li class="link-nav">
+				<li>
 					<Link let:active href="/video">
-						<span class="link-label">
-							{#if active}
-								<span class="indicator" in:receive={{ key }} out:send={{ key }} />
-							{/if}
-							<span class="link-label-text">ビデオ</span>
-						</span>
-						<span class="link-text">Video</span>
+						<NavItem {config} {active} label="ビデオ">Video</NavItem>
 					</Link>
 				</li>
 			</ul>
@@ -87,68 +50,24 @@
 <style>
 	div {
 		display: grid;
-		padding: var(--space-5) var(--space-4);
+		height: 100%;
+		padding: var(--space-5) 0;
 		gap: var(--space-3);
 		grid-template-columns: min-content auto;
 	}
 
 	header {
-		display: grid;
-		gap: var(--space-1);
+		position: sticky;
+		z-index: 1;
+		left: 0;
+		display: flex;
+		flex-flow: column;
+		padding: 0 var(--space-4);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		background-color: hsl(var(--color-background) / 0.85);
+		gap: var(--space-2);
 		place-items: start;
-	}
-
-	h1 {
-		display: inline-flex;
-		flex-flow: row-reverse;
-		padding: var(--space-4) var(--space-2);
-	}
-
-	.logo-label,
-	.logo-text,
-	.link-label,
-	.link-text {
-		line-height: 1;
-		writing-mode: vertical-lr;
-	}
-
-	.logo-label {
-		padding: var(--space-1) 0;
-		font-size: var(--font-size-2);
-		font-weight: 300;
-		letter-spacing: var(--tracking-4);
-		opacity: 0;
-		transform: translateX(-20px);
-		transition: all 175ms ease-in;
-	}
-
-	.logo-label.active {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	.logo-text {
-		font-size: var(--font-size-4);
-		font-weight: 900;
-		letter-spacing: var(--tracking--4);
-		text-transform: uppercase;
-	}
-
-	.logo-label,
-	.logo-text {
-		background: linear-gradient(
-			to bottom right,
-			hsl(200 100% 46.6%) 0%,
-			hsl(288.73 62.5% 55%) 45%,
-			hsl(288.73 62.5% 55%) 55%,
-			hsl(200 100% 46.6%) 100%
-		);
-		-webkit-background-clip: text;
-		background-clip: text;
-		background-position: 0 0;
-		background-repeat: repeat;
-		background-size: 400vw 400vh;
-		color: transparent;
 	}
 
 	nav {
@@ -162,52 +81,20 @@
 		list-style: none;
 	}
 
-	.link-nav {
+	li {
 		position: relative;
 		display: flex;
 		flex-flow: row-reverse;
 		align-items: start;
 		padding: 0 var(--space-1);
-		color: var(--color-grayscale-8);
+		color: hsl(var(--color-text));
 		gap: var(--space-1\2);
 		text-decoration: none;
 	}
 
-	.link-label,
-	.link-text {
-		color: currentColor;
-	}
-
-	.link-text {
-		padding: var(--space-3) var(--space-2);
-		background-color: var(--color-grayscale-1);
-		font-size: var(--font-size-2);
-		font-weight: 900;
-		letter-spacing: var(--tracking--2);
-		text-transform: uppercase;
-	}
-
-	.link-label {
-		position: relative;
-		padding: var(--space-2) var(--space-1);
-		margin: var(--space-1) 0;
-		font-size: var(--font-size-1);
-		letter-spacing: var(--tracking-4);
-	}
-
-	.link-label-text {
-		position: relative;
-		font-weight: 600;
-	}
-
-	.indicator {
-		position: absolute;
-		background-color: var(--color-grayscale-1);
-		inset: 0;
-		transform-origin: 0 0;
-	}
-
 	main {
-		padding: var(--space-3) 0;
+		position: relative;
+		display: grid;
+		isolation: isolate;
 	}
 </style>

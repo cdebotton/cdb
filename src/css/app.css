@@ -1,5 +1,11 @@
 @import './_core.css';
 
+:root {
+	--color-background: var(--color-grayscale-2);
+	--color-text: var(--color-grayscale-8);
+	--color-surface: var(--color-grayscale-8);
+}
+
 *,
 *::before,
 *::after {
@@ -15,7 +21,20 @@
 html {
 	display: grid;
 	height: 100%;
-	background-color: var(--color-grayscale-8);
+	background-color: hsl(var(--color-background));
+	color: hsl(var(--color-text));
+}
+
+::-webkit-scrollbar {
+	width: var(--space-1);
+	height: var(--space-1\2);
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: hsl(var(--color-surface));
 }
 
 body {

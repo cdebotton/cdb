@@ -51,6 +51,7 @@
 	--font-size-9: calc(var(--font-size-8) * var(--font-scale)); /* 61.04 px*/
 
 	/* Colors */
-	--color-grayscale-1: hsl(212 10% 5%);
-	--color-grayscale-8: hsl(212 5% 98%);
+	--color-grayscale-1: 212 10% 5%;
+	--color-grayscale-2: 212 10% 9%;
+	--color-grayscale-8: 212 5% 98%;
 }
