@@ -14,10 +14,10 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@motionone/dom": "10.13.1",
+		"@motionone/dom": "10.13.2",
 		"@playwright/test": "^1.24.2",
 		"@sveltejs/adapter-auto": "1.0.0-next.64",
-		"@sveltejs/kit": "1.0.0-next.403",
+		"@sveltejs/kit": "1.0.0-next.405",
 		"@types/three": "^0.143.0",
 		"@yushijinhun/three-minifier-rollup": "^0.4.0",
 		"eslint": "^8.21.0",
@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@threlte/core": "^4.3.2",
 		"@threlte/extras": "^4.1.0",
-		"motion": "^10.13.1",
+		"motion": "^10.13.2",
 		"three": "^0.143.0"
 	},
 	"volta": {

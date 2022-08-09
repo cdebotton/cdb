@@ -1,4 +1,6 @@
 <script>
+	import { animate } from '@motionone/dom';
+	import { scroll } from 'motion';
 	import { onMount } from 'svelte';
 
 	/** @type {(event: WheelEvent) => void} */
@@ -16,6 +18,10 @@
 	}
 
 	onMount(() => {
+		scroll(({ x: { progress, velocity } }) => {
+			console.log(progress, velocity);
+		});
+
 		document.documentElement.addEventListener('wheel', transformScroll, { passive: false });
 
 		return () => {
@@ -73,7 +79,7 @@
 	}
 
 	.item {
-		background-color: hsl(var(--color-grayscale-1) / 0.1);
+		background-color: hsl(var(--color-grayscale-1) / 0.2);
 		grid-column: span 2;
 		grid-row: span 2;
 	}
