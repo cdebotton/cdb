@@ -19,7 +19,10 @@
 	h1 {
 		display: inline-flex;
 		flex-flow: row-reverse;
-		padding: 0 var(--space-1);
+		padding: var(--space-3) var(--space-2);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		background-color: hsl(var(--color-background) / 0.85);
 	}
 
 	.label {

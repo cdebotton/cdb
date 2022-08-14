@@ -1,33 +1,8 @@
 <script>
-	import { animate } from '@motionone/dom';
-	import { scroll } from 'motion';
-	import { onMount } from 'svelte';
+	/** @type {Array<Object>} */
+	export let posts;
 
-	/** @type {(event: WheelEvent) => void} */
-	function transformScroll(event) {
-		if (!event.deltaY) {
-			return;
-		}
-
-		if (!(event.currentTarget instanceof HTMLElement)) {
-			return;
-		}
-
-		event.currentTarget.scrollLeft += event.deltaY + event.deltaX;
-		event.preventDefault();
-	}
-
-	onMount(() => {
-		scroll(({ x: { progress, velocity } }) => {
-			console.log(progress, velocity);
-		});
-
-		document.documentElement.addEventListener('wheel', transformScroll, { passive: false });
-
-		return () => {
-			document.documentElement.removeEventListener('wheel', transformScroll);
-		};
-	});
+	console.log(posts);
 </script>
 
 <svelte:head>
@@ -39,43 +14,58 @@
 </svelte:head>
 
 <div class="container">
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
-	<div class="item" />
+	<div class="page">
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+		<div class="item" />
+	</div>
+	<div class="page" />
+	<div class="page" />
+	<div class="page" />
+	<div class="page" />
 </div>
 
 <style>
+	:global(html) {
+		scroll-padding: var(--space-6);
+		scroll-snap-type: y mandatory;
+	}
 	.container {
-		--gap: var(--space-5);
-		--page-padding: var(--space-5);
-		--row-count: 5;
-
 		display: grid;
-		height: 100%;
 		gap: var(--gap);
-		grid-auto-columns: 200px;
+		grid-auto-flow: row;
+		--gap: var(--space-2);
+		--page-padding: var(--space-5);
+		--row-count: 6;
+	}
+
+	.page {
+		display: grid;
+		height: calc(100vh - var(--space-8));
 		grid-auto-columns: calc(
 			(100vh - (var(--gap) * (var(--row-count) - 1)) - (var(--page-padding) * 2)) / var(--row-count)
 		);
+		grid-auto-columns: calc(100vw - var(--offset-x) - 4rem);
 		grid-auto-flow: column dense;
 		grid-template-rows: repeat(var(--row-count), 1fr);
+		scroll-snap-align: start;
 	}
 
 	.item {
@@ -85,12 +75,12 @@
 	}
 
 	.item:nth-of-type(1) {
-		grid-column: span 4;
-		grid-row: span 5;
+		grid-column: span var(--row-count);
+		grid-row: span var(--row-count);
 	}
 
 	.item:nth-of-type(3n + 3) {
-		grid-column: span 3;
-		grid-row: span 3;
+		grid-column: span calc(var(--row-count) - 1);
+		grid-row: span calc(var(--row-count) - 1);
 	}
 </style>
