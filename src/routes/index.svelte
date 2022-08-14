@@ -1,8 +1,8 @@
 <script>
-	/** @type {Array<Object>} */
-	export let posts;
+	import { formatDate } from '$lib/date';
 
-	console.log(posts);
+	/** @type {import('$lib/api').Post[]} */
+	export let posts;
 </script>
 
 <svelte:head>
@@ -15,26 +15,17 @@
 
 <div class="container">
 	<div class="page">
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
-		<div class="item" />
+		{#each posts as post (post)}
+			<div class="item">
+				<a href={post.url}>
+					<span class="metadata">
+						<h2>{post.title}</h2>
+						<h3>{post.category}</h3>
+						<h4>{formatDate(post.date)}</h4>
+					</span>
+				</a>
+			</div>
+		{/each}
 	</div>
 	<div class="page" />
 	<div class="page" />
@@ -47,18 +38,21 @@
 		scroll-padding: var(--space-6);
 		scroll-snap-type: y mandatory;
 	}
+
 	.container {
 		display: grid;
 		gap: var(--gap);
 		grid-auto-flow: row;
 		--gap: var(--space-2);
 		--page-padding: var(--space-5);
-		--row-count: 6;
+		--row-count: 4;
 	}
 
 	.page {
 		display: grid;
 		height: calc(100vh - var(--space-8));
+		padding: var(--space-4);
+		gap: var(--space-4);
 		grid-auto-columns: calc(
 			(100vh - (var(--gap) * (var(--row-count) - 1)) - (var(--page-padding) * 2)) / var(--row-count)
 		);
@@ -69,6 +63,7 @@
 	}
 
 	.item {
+		position: relative;
 		background-color: hsl(var(--color-grayscale-1) / 0.2);
 		grid-column: span 2;
 		grid-row: span 2;
@@ -82,5 +77,32 @@
 	.item:nth-of-type(3n + 3) {
 		grid-column: span calc(var(--row-count) - 1);
 		grid-row: span calc(var(--row-count) - 1);
+	}
+
+	.item a {
+		position: absolute;
+		inset: 0;
+	}
+
+	.metadata {
+		position: absolute;
+		right: var(--space-6);
+		bottom: var(--space-5);
+	}
+
+	h2 {
+		font-size: var(--font-size-3);
+		font-weight: 900;
+	}
+
+	h3 {
+		font-size: var(--font-size-1);
+		font-weight: 800;
+		text-transform: capitalize;
+	}
+
+	h4 {
+		font-size: var(--font-size-1);
+		font-weight: 600;
 	}
 </style>

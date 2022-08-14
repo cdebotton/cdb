@@ -1,14 +1,15 @@
 <script>
-	/** @type {import('./index').Body['posts']} */
+	/** @type {import('./index').Post[]} */
 	export let posts;
-
-	console.log(posts);
+	/** @type {number} */
+	export let total;
 </script>
 
 <svelte:head>
 	<title>Photography | Christian de Botton</title>
 </svelte:head>
 
+<h2>{total} posts</h2>
 <ul>
 	{#each posts as post}
 		<li>
