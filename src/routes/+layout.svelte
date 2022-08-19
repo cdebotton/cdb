@@ -83,7 +83,7 @@
 	main {
 		position: relative;
 		display: grid;
-		padding: var(--space-6) 0;
+		padding: var(--space-5) 0;
 		isolation: isolate;
 	}
 </style>

@@ -7,16 +7,16 @@ import { resolvePosts } from '$lib/api';
  * @property {Date} date
  * @property {string} url
  *
- * @typedef Body
+ * @typedef Data
  * @type {object}
  * @property {Post[]} posts
  * @property {number} total
  */
 
 /**
- * @type {import('./__types').RequestHandler<Body>}
+ * @type {import('./$types').PageServerLoad<Data>}
  * */
-export async function GET({ url }) {
+export async function load({ url }) {
 	let glob = import.meta.glob('./**/*.md');
 	let posts = await resolvePosts(glob, url);
 
@@ -25,10 +25,7 @@ export async function GET({ url }) {
 	let total = posts.length;
 
 	return {
-		status: 200,
-		body: {
-			total,
-			posts
-		}
+		total,
+		posts
 	};
 }

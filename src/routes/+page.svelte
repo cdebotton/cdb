@@ -1,8 +1,8 @@
 <script>
 	import { formatDate } from '$lib/date';
 
-	/** @type {import('$lib/api').Post[]} */
-	export let posts;
+	/** @type {import('./+page.server').Data} */
+	export let data;
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@
 
 <div class="container">
 	<div class="page">
-		{#each posts as post (post)}
+		{#each data.posts as post (post)}
 			<div class="item">
 				<a href={post.url}>
 					<span class="metadata">
@@ -51,7 +51,7 @@
 	.page {
 		display: grid;
 		height: calc(100vh - var(--space-8));
-		padding: var(--space-4);
+		padding: 0 var(--space-4);
 		gap: var(--space-4);
 		grid-auto-columns: calc(
 			(100vh - (var(--gap) * (var(--row-count) - 1)) - (var(--page-padding) * 2)) / var(--row-count)

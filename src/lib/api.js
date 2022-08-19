@@ -31,7 +31,7 @@ function assertFrontMatter(maybePost) {
  * @returns string
  */
 function getUrl(base, path) {
-	let uri = path.slice(2, -3);
+	let uri = path.slice(2, -3).split('/').slice(0, -1).join('/');
 	let root = base.pathname.slice(1);
 
 	return `${root}/${uri}`;
