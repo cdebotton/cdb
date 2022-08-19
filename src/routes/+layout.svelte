@@ -1,9 +1,9 @@
 <script>
 	import '../css/app.css';
 
-	import Link from '$lib/Link.svelte';
-	import Logo from '$lib/Logo.svelte';
-	import NavItem from '$lib/NavItem.svelte';
+	import Link from './Link.svelte';
+	import Logo from './Logo.svelte';
+	import NavItem from './NavItem.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig} */
 	let config = {

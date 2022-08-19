@@ -1,5 +1,6 @@
 /**
  * The shape of data returned from mdsvex when parsing a markdown file.
+ *
  * @typedef FrontMatter
  * @type {object}
  * @property {string} title
@@ -10,6 +11,7 @@
 
 /**
  * Assert that the input contains mdsvex FrontMatter
+ *
  * @param {unknown} maybePost
  * @returns {asserts maybePost is { metadata: FrontMatter }}
  */
@@ -38,6 +40,7 @@ function getUrl(base, path) {
 }
 
 /**
+ * Resolve post objects from a glob of markdown files.
  *
  * @param {Record<string, () => Promise<unknown>>} glob
  * @param {URL} url

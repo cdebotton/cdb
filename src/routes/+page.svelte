@@ -64,9 +64,9 @@
 
 	.item {
 		position: relative;
+		aspect-ratio: 1;
 		background-color: hsl(var(--color-grayscale-1) / 0.2);
 		grid-column: span 2;
-		grid-row: span 2;
 	}
 
 	.item:nth-of-type(1) {
