@@ -51,8 +51,12 @@
 		z-index: 1;
 		left: 0;
 		display: flex;
+		height: 100vh;
 		flex-flow: column;
 		padding: var(--space-4) var(--space-4);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		background-color: hsl(var(--color-background) / 0.85);
 		gap: var(--space-1);
 		place-items: start;
 	}

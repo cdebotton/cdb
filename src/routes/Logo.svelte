@@ -20,9 +20,6 @@
 		display: inline-flex;
 		flex-flow: row-reverse;
 		padding: var(--space-3) var(--space-2);
-		-webkit-backdrop-filter: blur(8px);
-		backdrop-filter: blur(8px);
-		background-color: hsl(var(--color-background) / 0.85);
 	}
 
 	.label {
