@@ -4,9 +4,6 @@
 
 	import '$css/app.css';
 
-	/** @type {import('./$types').LayoutData} */
-	export let data;
-
 	/** @type {svelte.JSX.EventHandler<SubmitEvent, HTMLFormElement>} */
 	async function handleLogout(event) {
 		let data = new FormData(event.currentTarget);
@@ -18,19 +15,17 @@
 		/** @type {import('@sveltejs/kit').ActionResult} */
 		let result = await response.json();
 
-		if (result.type === 'success') {
+		if (result.type === 'redirect') {
 			await invalidateAll();
 		}
 
-		applyAction(result);
+		await applyAction(result);
 	}
 </script>
 
 <header>
-	{#if data.loggedIn}
-		<form method="post" action="/admin/logout" on:submit|preventDefault={handleLogout}>
-			<button type="submit">Logout</button>
-		</form>
-	{/if}
+	<form method="post" action="/admin/logout" on:submit|preventDefault={handleLogout}>
+		<button type="submit">Logout</button>
+	</form>
 </header>
 <slot />

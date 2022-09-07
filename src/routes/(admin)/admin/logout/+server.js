@@ -18,7 +18,7 @@ export async function POST({ cookies }) {
 
 	return json({
 		type: 'redirect',
-		location: '/admin/login',
-		status: 307
+		location: '/login',
+		status: 302
 	});
 }
