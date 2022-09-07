@@ -1,38 +1,14 @@
 <script>
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { enhance } from '$app/forms';
 	import Input from '$lib/Input.svelte';
-
-	/** @type {string} */
-	let email;
-
-	/** @type {string} */
-	let password;
-
-	$: redirectUri = $page.url.searchParams.get('redirect_uri') ?? '/admin';
-
-	function handleSubmit() {
-		fetch('/admin/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				email,
-				password
-			})
-		}).then(() => {
-			goto(redirectUri);
-		});
-	}
 </script>
 
 <div>
-	<form method="post" on:submit|preventDefault={handleSubmit}>
+	<form method="post" use:enhance>
 		<fieldset>
 			<legend>Login</legend>
-			<Input bind:value={email} label="Email" id="email" />
-			<Input bind:value={password} type="password" label="Password" id="password" />
+			<Input name="email" label="Email" id="email" />
+			<Input name="password" type="password" label="Password" id="password" />
 		</fieldset>
 		<button type="submit">Go</button>
 	</form>

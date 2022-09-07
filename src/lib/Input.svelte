@@ -2,8 +2,11 @@
 	/** @type {string|number|null} */
 	export let value = null;
 
-	/** @type {string}*/
+	/** @type {string} */
 	export let label;
+
+	/** @type {string} */
+	export let name;
 
 	/** @type {string} */
 	export let placeholder = label;
@@ -24,7 +27,7 @@
 
 <div>
 	<label for={id}>{label}</label>
-	<input {id} {type} {placeholder} {value} on:input={handleInput} />
+	<input {name} {id} {type} {placeholder} {value} on:input={handleInput} />
 </div>
 
 <style>

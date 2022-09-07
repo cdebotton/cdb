@@ -1,24 +1,24 @@
-import { serialize } from 'cookie';
+import { json } from '@sveltejs/kit';
 
 /** @type {import('./$types').RequestHandler} */
-export async function POST({ setHeaders }) {
-	setHeaders({
-		'set-cookie': serialize('access_token', '', {
-			httpOnly: true,
-			secure: true,
-			path: '/',
-			expires: new Date(1986, 2, 8)
-		})
+export async function POST({ cookies }) {
+	cookies.set('access_token', '', {
+		httpOnly: true,
+		secure: true,
+		path: '/',
+		maxAge: 0
 	});
 
-	setHeaders({
-		'set-cookie': serialize('refresh_token', '', {
-			httpOnly: true,
-			secure: true,
-			path: '/',
-			expires: new Date(1986, 2, 8)
-		})
+	cookies.set('refresh_token', '', {
+		httpOnly: true,
+		secure: true,
+		path: '/',
+		maxAge: 0
 	});
 
-	return new Response(String('ok'));
+	return json({
+		type: 'redirect',
+		location: '/admin/login',
+		status: 307
+	});
 }
