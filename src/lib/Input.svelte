@@ -11,6 +11,9 @@
 	/** @type {string} */
 	export let type = 'text';
 
+	/** @type {string} */
+	export let id;
+
 	/** @type {svelte.JSX.FormEventHandler<HTMLInputElement>} */
 	function handleInput(event) {
 		value = type.match(/^(number|range)/)
@@ -19,7 +22,19 @@
 	}
 </script>
 
-<label>
-	{label}
-	<input {type} {placeholder} {value} on:input={handleInput} />
-</label>
+<div>
+	<label for={id}>{label}</label>
+	<input {id} {type} {placeholder} {value} on:input={handleInput} />
+</div>
+
+<style>
+	div {
+		display: grid;
+	}
+
+	input {
+		padding: var(--space-2);
+		border: none;
+		border-radius: 3px;
+	}
+</style>

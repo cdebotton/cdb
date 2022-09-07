@@ -1,4 +1,6 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import Input from '$lib/Input.svelte';
 
 	/** @type {string} */
@@ -6,6 +8,8 @@
 
 	/** @type {string} */
 	let password;
+
+	$: redirectUri = $page.url.searchParams.get('redirect_uri') ?? '/admin';
 
 	function handleSubmit() {
 		fetch('/admin/login', {
@@ -17,18 +21,19 @@
 				email,
 				password
 			})
+		}).then(() => {
+			goto(redirectUri);
 		});
 	}
 </script>
 
 <div>
-	<form on:submit|preventDefault={handleSubmit}>
-		<fieldst>
+	<form method="post" on:submit|preventDefault={handleSubmit}>
+		<fieldset>
 			<legend>Login</legend>
-			<Input bind:value={email} label="Email" />
-			<Input bind:value={password} type="password" label="Password" />
-		</fieldst>
-
+			<Input bind:value={email} label="Email" id="email" />
+			<Input bind:value={password} type="password" label="Password" id="password" />
+		</fieldset>
 		<button type="submit">Go</button>
 	</form>
 </div>
@@ -44,5 +49,19 @@
 
 	form {
 		display: grid;
+		gap: var(--space-2);
+	}
+
+	fieldset {
+		display: grid;
+		padding: var(--space-2);
+		border: none;
+		gap: var(--space-2);
+	}
+
+	legend {
+		padding: 0;
+		font-size: var(--font-size-3);
+		font-weight: 900;
 	}
 </style>
