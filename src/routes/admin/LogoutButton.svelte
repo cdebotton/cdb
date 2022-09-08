@@ -22,7 +22,7 @@
 </script>
 
 <form method="post" action="/admin/logout" on:submit|preventDefault={handleLogout}>
-	<button type="submit">Logout</button>
+	<button title="Logout" type="submit">Logout</button>
 </form>
 
 <style>
@@ -30,5 +30,6 @@
 		padding: var(--space-2);
 		border: none;
 		border-radius: 3px;
+		cursor: pointer;
 	}
 </style>

@@ -1,5 +1,5 @@
 <script>
-	/** @type {import('./+page.server').Data} */
+	/** @type {any} */
 	export let data;
 </script>
 
@@ -11,7 +11,7 @@
 <ul>
 	{#each data.posts as post}
 		<li>
-			<a sveltekit:prefetch href={post.url}>{post.title}</a>
+			<a data-sveltekit-prefetch href={post.url}>{post.title}</a>
 		</li>
 	{/each}
 </ul>
