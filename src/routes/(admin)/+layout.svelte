@@ -1,31 +1,26 @@
 <script>
-	import { applyAction } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
-
 	import '$css/app.css';
-
-	/** @type {svelte.JSX.EventHandler<SubmitEvent, HTMLFormElement>} */
-	async function handleLogout(event) {
-		let data = new FormData(event.currentTarget);
-		let response = await fetch(event.currentTarget.action, {
-			method: 'post',
-			body: data
-		});
-
-		/** @type {import('@sveltejs/kit').ActionResult} */
-		let result = await response.json();
-
-		if (result.type === 'redirect') {
-			await invalidateAll();
-		}
-
-		await applyAction(result);
-	}
+	import LogoutButton from './LogoutButton.svelte';
 </script>
 
 <header>
-	<form method="post" action="/admin/logout" on:submit|preventDefault={handleLogout}>
-		<button type="submit">Logout</button>
-	</form>
+	<h1>Admin</h1>
+	<LogoutButton />
 </header>
 <slot />
+
+<style>
+	header {
+		display: grid;
+		padding: var(--space-4);
+		grid-template-columns: auto min-content;
+	}
+
+	h1 {
+		font-size: var(--font-size-4);
+		font-weight: 900;
+		letter-spacing: var(--tracking--2);
+		line-height: var(--leading-none);
+		text-transform: uppercase;
+	}
+</style>
