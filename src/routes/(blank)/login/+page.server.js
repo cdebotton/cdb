@@ -1,5 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 
+import { Api } from '$lib/api';
+
 /** @type import('./$types').Actions */
 export const actions = {
 	default: async ({ request, url, cookies }) => {
@@ -7,19 +9,14 @@ export const actions = {
 		let email = form.get('email');
 		let password = form.get('password');
 
-		let { access_token, expires_in, refresh_token, refresh_token_expires } = await fetch(
-			'http://localhost:3000/accounts/authorize',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					client_id: email,
-					client_secret: password
-				})
-			}
-		).then((res) => res.json());
+		let { access_token, expires_in, refresh_token, refresh_token_expires } = await Api.post(
+			'accounts/authorize'
+		)
+			.body({
+				client_id: email,
+				client_secret: password
+			})
+			.json();
 
 		cookies.set('access_token', access_token, {
 			httpOnly: true,

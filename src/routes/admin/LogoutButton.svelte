@@ -1,27 +1,17 @@
 <script>
 	import { applyAction } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
-
-	/** @type {svelte.JSX.EventHandler<SubmitEvent, HTMLFormElement>} */
-	async function handleLogout(event) {
-		let data = new FormData(event.currentTarget);
-		let response = await fetch(event.currentTarget.action, {
-			method: 'post',
-			body: data
-		});
-
-		/** @type {import('@sveltejs/kit').ActionResult} */
-		let result = await response.json();
-
-		if (result.type === 'redirect') {
-			await invalidateAll();
-		}
-
-		await applyAction(result);
-	}
+	import { enhance } from '$app/forms';
 </script>
 
-<form method="post" action="/admin/logout" on:submit|preventDefault={handleLogout}>
+<form
+	method="post"
+	action="/admin/logout"
+	use:enhance={() => {
+		return async ({ result }) => {
+			await applyAction(result);
+		};
+	}}
+>
 	<button title="Logout" type="submit">Logout</button>
 </form>
 

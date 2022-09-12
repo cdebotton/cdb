@@ -8,14 +8,12 @@
  * @property {Date|null} updated_at
  */
 
+import { Api } from '$lib/api';
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals }) {
 	/** @type {User[]} */
-	let users = await fetch('http://localhost:3000/users', {
-		headers: {
-			Authorization: `Bearer ${locals.accessToken}`
-		}
-	}).then((res) => res.json());
+	let users = await Api.get('users').bearer(locals.accessToken).json();
 
 	return {
 		users

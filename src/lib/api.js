@@ -1,67 +1,148 @@
-/**
- * The shape of data returned from mdsvex when parsing a markdown file.
- *
- * @typedef FrontMatter
- * @type {object}
- * @property {string} title
- * @property {Date} date
- */
+import { env } from '$env/dynamic/public';
 
-/** @typedef {FrontMatter & { url: string, category: string }} Post */
-
-/**
- * Assert that the input contains mdsvex FrontMatter
- *
- * @param {unknown} maybePost
- * @returns {asserts maybePost is { metadata: FrontMatter }}
- */
-function assertFrontMatter(maybePost) {
-	if (typeof maybePost !== 'object' || maybePost === null) {
-		throw new Error('Not FrontMatter');
-	}
-
-	if (!Object.hasOwn(maybePost, 'metadata')) {
-		throw new Error('Not FrontMatter');
+export class ApiError extends Error {
+	/**
+	 *
+	 * @param {number} status
+	 * @param {string} message
+	 */
+	constructor(status, message) {
+		super(message);
+		this.status = status;
 	}
 }
 
 /**
- * Get url from the resolver key
- *
- * @param {URL} base
- * @param {string} path
- * @returns string
+ * An Api Builder class
+ * @class
+ * @public
  */
-function getUrl(base, path) {
-	let uri = path.slice(2, -3).split('/').slice(0, -1).join('/');
-	let root = base.pathname.slice(1);
+export class Api {
+	/**
+	 * The endpoint to fetch
+	 * @param {string} endpoint
+	 * @returns {GetApi}
+	 */
+	static get(endpoint) {
+		return new GetApi(endpoint);
+	}
 
-	return `${root}/${uri}`;
+	/**
+	 *
+	 * @param {string} endpoint
+	 * @returns {PostApi}
+	 */
+	static post(endpoint) {
+		return new PostApi(endpoint);
+	}
 }
 
-/**
- * Resolve post objects from a glob of markdown files.
- *
- * @param {Record<string, () => Promise<unknown>>} glob
- * @param {URL} url
- */
-export async function resolvePosts(glob, url) {
-	let entries = Object.entries(glob);
+class GetApi {
+	/**
+	 * Construct a new Get API builder around an endpoint.
+	 * @param {string} endpoint
+	 */
+	constructor(endpoint) {
+		this.endpoint = endpoint;
+		this.headers = new Headers();
+	}
 
-	let posts = await Promise.all(
-		entries.map(async ([key, resolve]) => {
-			if (typeof resolve !== 'function') {
-				throw new Error('Invalid resolve fn');
-			}
-			let data = await resolve();
+	/**
+	 * Set a header
+	 * @param {string} key
+	 * @param {string} value
+	 * @returns
+	 */
+	header(key, value) {
+		this.headers.set(key, value);
+		return this;
+	}
 
-			assertFrontMatter(data);
+	/**
+	 * Shortcut to set the bearer token.
+	 * @param {string} [value]
+	 */
+	bearer(value) {
+		if (value) {
+			this.headers.set('Authorization', `Bearer ${value}`);
+		}
+		return this;
+	}
 
-			let category = key.split('/')[1];
+	/**
+	 * @template T
+	 * @returns {Promise<T>}
+	 */
+	async json() {
+		this.headers.set('Content-Type', 'application/json');
 
-			return { ...data.metadata, category, url: getUrl(url, key) };
-		})
-	);
+		let response = await fetch(`${env.PUBLIC_API_URL}/${this.endpoint}`, {
+			method: 'GET',
+			headers: this.headers
+		});
 
-	return posts;
+		if (!response.ok) {
+			throw new ApiError(response.status, response.statusText);
+		}
+
+		let json = await response.json();
+
+		return json;
+	}
+}
+
+class PostApi {
+	/**
+	 * Create a new Post Api Builder.
+	 * @param {string} endpoint
+	 */
+	constructor(endpoint) {
+		this.endpoint = endpoint;
+		this.headers = new Headers();
+	}
+
+	/**
+	 * Set the content to serialize to the endpoint.
+	 * @param {any} content
+	 * @returns {PostApi}
+	 */
+	body(content) {
+		if (this.content) {
+			throw new Error('Cannot set body or formData multiple times.');
+		}
+
+		this.content = JSON.stringify(content);
+		this.headers.append('Content-Type', 'application/json');
+		return this;
+	}
+
+	/**
+	 * Set the content to serialize to the endpoint.
+	 * @param {HTMLFormElement} form
+	 * @returns {PostApi}
+	 */
+	formData(form) {
+		if (this.content) {
+			throw new Error('Cannot set body or formData multiple times.');
+		}
+
+		this.content = new FormData(form);
+		return this;
+	}
+
+	/**
+	 * @template T
+	 * @returns {Promise<T>}
+	 */
+	async json() {
+		let response = await fetch(`${env.PUBLIC_API_URL}/${this.endpoint}`, {
+			method: 'POST',
+			body: this.content,
+			headers: this.headers
+		});
+
+		let json = await response.json();
+
+		return json;
+	}
 }
