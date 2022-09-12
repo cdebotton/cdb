@@ -2,10 +2,10 @@
  * @typedef User
  * @type {object}
  * @property {string} id
- * @property {string} first_name
- * @property {string} last_name
- * @property {Date} created_at
- * @property {Date|null} updated_at
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {Date} createdAt
+ * @property {Date|null} updatedAt
  */
 
 import { Api } from '$lib/api';

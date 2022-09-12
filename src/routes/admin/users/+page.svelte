@@ -5,7 +5,7 @@
 
 <ul>
 	{#each data.users as user (user.id)}
-		{@const fullName = `${user.first_name} ${user.last_name}`}
+		{@const fullName = `${user.firstName} ${user.lastName}`}
 		<li>
 			<a title={`${fullName} (${user.id})`} href={`/admin/users/${user.id}`}>
 				{fullName}

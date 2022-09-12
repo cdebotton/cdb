@@ -3,4 +3,4 @@
 	export let data;
 </script>
 
-<h2>{data.user.first_name} {data.user.last_name}</h2>
+<h2>{data.user.firstName} {data.user.lastName}</h2>
