@@ -14,16 +14,15 @@ export async function handle({ event, resolve }) {
 			event.cookies.set('access_token', result.access_token, {
 				httpOnly: true,
 				secure: true,
-				expires: result.expires_in
+				expires: new Date(result.expires_in)
 			});
 
+			console.log(result.refresh_token_expires);
 			event.cookies.set('refresh_token', result.refresh_token, {
 				httpOnly: true,
 				secure: true,
-				expires: result.refresh_token_expires
+				expires: new Date(result.refresh_token_expires)
 			});
-
-			console.log('Tokens updated');
 		} catch (err) {
 			event.cookies.delete('refresh_token');
 			event.cookies.delete('access_token');
