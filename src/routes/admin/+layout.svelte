@@ -1,5 +1,4 @@
 <script>
-	import '$css/app.css';
 	import AdminLogo from './AdminLogo.svelte';
 	import LogoutButton from './LogoutButton.svelte';
 	import Nav from './Nav.svelte';
@@ -17,7 +16,7 @@
 	header {
 		display: grid;
 		align-items: baseline;
-		padding: var(--space-4);
+		padding: var(--space-6) var(--space-6) var(--space-3);
 		gap: var(--space-4);
 		grid-template-columns: min-content auto min-content;
 	}

@@ -1,14 +1,16 @@
-import { env } from '$env/dynamic/public';
+import { error } from '@sveltejs/kit';
 
-export class ApiError extends Error {
+import { PUBLIC_API_URL } from '$env/static/public';
+
+export class ApiError {
 	/**
-	 *
-	 * @param {number} status
-	 * @param {string} message
+	 * Create a new Api Error
+	 * @param {number} status HTTP Status Code
+	 * @param {string} message The error body
 	 */
 	constructor(status, message) {
-		super(message);
 		this.status = status;
+		this.message = message;
 	}
 }
 
@@ -116,24 +118,17 @@ export class Api {
 	 * @returns {Promise<T>}
 	 */
 	async json() {
-		this.headers.set('Content-Type', 'application/json');
-
-		/** @type {RequestInit} */
-		let init = {
+		let response = await fetch(`${PUBLIC_API_URL}/${this.endpoint}`, {
 			method: this.method,
-			headers: this.headers
-		};
-
-		if (this.content) {
-			init.body = this.content;
-		}
-
-		let response = await fetch(`${env.PUBLIC_API_URL}/${this.endpoint}`, init);
+			headers: this.headers,
+			body: this.content
+		});
 
 		if (!response.ok) {
-			throw new ApiError(response.status, response.statusText);
+			throw error(response.status, response.statusText);
 		}
 
+		/** @type {T} */
 		let json = await response.json();
 
 		return json;

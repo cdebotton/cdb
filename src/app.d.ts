@@ -8,6 +8,10 @@ declare namespace App {
 		accessToken?: string;
 		refreshToken?: string;
 	}
+
+	interface PageError {
+		message: string;
+	}
 	// interface Platform {}
 	// interface Session {}
 	// interface Stuff {}

@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
+import { dev } from '$app/environment';
 import { Api } from '$lib/api';
 
 /** @type import('./$types').Actions */
@@ -9,27 +10,27 @@ export const actions = {
 		let email = form.get('email');
 		let password = form.get('password');
 
-		let { access_token, expires_in, refresh_token, refresh_token_expires } = await Api.post(
+		let { accessToken, expiresIn, refreshToken, refreshTokenExpires } = await Api.post(
 			'accounts/authorize'
 		)
 			.body({
-				client_id: email,
-				client_secret: password
+				clientId: email,
+				clientSecret: password
 			})
 			.json();
 
-		cookies.set('access_token', access_token, {
+		cookies.set('accessToken', accessToken, {
 			httpOnly: true,
-			secure: true,
+			secure: !dev,
 			path: '/',
-			expires: new Date(expires_in)
+			expires: new Date(expiresIn)
 		});
 
-		cookies.set('refresh_token', refresh_token, {
+		cookies.set('refreshToken', refreshToken, {
 			httpOnly: true,
-			secure: true,
+			secure: !dev,
 			path: '/',
-			expires: new Date(refresh_token_expires)
+			expires: new Date(refreshTokenExpires)
 		});
 
 		let redirectUri = url.searchParams.get('redirect_uri') ?? '/admin';

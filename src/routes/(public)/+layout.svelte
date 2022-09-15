@@ -1,6 +1,4 @@
 <script>
-	import '../../css/app.css';
-
 	import Link from './Link.svelte';
 	import Logo from './Logo.svelte';
 	import NavItem from './NavItem.svelte';

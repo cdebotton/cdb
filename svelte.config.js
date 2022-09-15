@@ -6,7 +6,9 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$css: 'src/css'
+			$css: 'src/css',
+			$hooks: 'src/hooks',
+			$msw: 'msw'
 		}
 	}
 };

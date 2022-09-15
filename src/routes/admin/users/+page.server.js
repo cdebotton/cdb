@@ -1,4 +1,8 @@
 /**
+ * @typedef Account
+ * @type {object}
+ * @property {string} email
+ *
  * @typedef User
  * @type {object}
  * @property {string} id
@@ -6,6 +10,7 @@
  * @property {string} lastName
  * @property {Date} createdAt
  * @property {Date|null} updatedAt
+ * @property {Account} account
  */
 
 import { Api } from '$lib/api';

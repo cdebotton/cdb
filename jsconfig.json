@@ -12,8 +12,10 @@
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
-			"$media": ["src/media"],
-			"$media/*": ["src/media/*"]
+			"$hooks": ["src/hooks"],
+			"$hooks/*": ["src/hooks/*"],
+			"$msw": ["msw"],
+			"$msw/*": ["msw/*"]
 		}
 	}
 }

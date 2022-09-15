@@ -1,6 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
+import { createWorkerFixture } from 'playwright-msw';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	expect(await page.textContent('h1')).toBe('Welcome to SvelteKit');
+let test = base.extend({
+	worker: createWorkerFixture()
 });
+
+export { test, expect };
