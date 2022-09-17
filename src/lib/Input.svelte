@@ -23,9 +23,14 @@
 			? parseFloat(event.currentTarget?.value)
 			: event.currentTarget?.value;
 	}
+
+	/** @type {string|undefined} */
+	let className = undefined;
+
+	export { className as class };
 </script>
 
-<div>
+<div class={className}>
 	<label for={id}>{label}</label>
 	<input {name} {id} {type} {placeholder} {value} on:input={handleInput} />
 </div>
