@@ -15,7 +15,7 @@
 	export let type = 'text';
 
 	/** @type {string} */
-	export let id;
+	export let id = name;
 
 	/** @type {svelte.JSX.FormEventHandler<HTMLInputElement>} */
 	function handleInput(event) {

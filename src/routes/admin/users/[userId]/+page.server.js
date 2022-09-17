@@ -5,8 +5,9 @@ import { Api, ApiError } from '$lib/api';
 /**
  * @typedef User
  * @type {object}
- * @property {string} firstName
- * @property {string} lastName
+ * @property {string} id The users uuid
+ * @property {string} [firstName] Optional first name
+ * @property {string} [lastName] Optional last name
  */
 
 /** @type {import('./$types').PageServerLoad} */
@@ -26,3 +27,17 @@ export async function load({ params }) {
 		throw error(500, { message: 'Uh oh, something happened' });
 	}
 }
+
+/** @type {import('./$types').Actions} */
+export let actions = {
+	default: async ({ request, params }) => {
+		let userId = params.userId;
+		let form = await request.formData();
+		let firstName = form.get('firstName');
+		let lastName = form.get('lastName');
+
+		console.log({ userId, firstName, lastName });
+
+		return {};
+	}
+};
