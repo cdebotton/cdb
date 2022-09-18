@@ -2,19 +2,28 @@
 	import { enhance } from '$app/forms';
 	import Input from '$lib/Input.svelte';
 
-	/** @type {import('./$types').PageData} */
+	/** @type {import('./$types').PageServerData} */
 	export let data;
 </script>
 
-<div class="container">
+<div>
 	<form method="POST" use:enhance>
-		<legend>User {data.user.id}</legend>
-
-		<Input class="half" label="First name" name="firstName" bind:value={data.user.firstName} />
-		<Input class="half" label="Last name" name="lastName" bind:value={data.user.lastName} />
-
-		<button type="reset">Reset</button>
-		<button type="submit">Save</button>
+		<legend class="item-lg">User {data.user.id}</legend>
+		<div class="item-lg">
+			<Input label="Email" name="email" bind:value={data.user.account.email} />
+		</div>
+		<div class="item-md">
+			<Input label="First name" name="firstName" bind:value={data.user.firstName} />
+		</div>
+		<div class="item-md">
+			<Input label="Last name" name="lastName" bind:value={data.user.lastName} />
+		</div>
+		<div class="item-sm">
+			<button type="reset">Reset</button>
+		</div>
+		<div class="item-sm">
+			<button type="submit">Save</button>
+		</div>
 	</form>
 </div>
 
@@ -24,6 +33,7 @@
 		width: 100%;
 		max-width: 40rem;
 		gap: var(--space-2);
+		grid-auto-rows: min-content;
 		grid-template-columns: repeat(8, 1fr);
 	}
 
@@ -33,12 +43,16 @@
 		grid-column: span 8;
 	}
 
-	.container {
-		padding: 0 var(--space-6);
+	.item-lg {
+		grid-column: span 8;
 	}
 
-	form :global(.half) {
+	.item-md {
 		grid-column: span 4;
+	}
+
+	.item-sm {
+		grid-column: span 2;
 	}
 
 	button {
@@ -46,16 +60,5 @@
 		border: none;
 		border-radius: 3px;
 		cursor: pointer;
-	}
-
-	button[type='reset'] {
-		background-image: linear-gradient(to bottom, #333, #222);
-		color: var(--color-text);
-		grid-column: 6 / span 1;
-	}
-
-	button[type='submit'] {
-		background-image: linear-gradient(to bottom, #fff, #eee);
-		grid-column: 7 / span 2;
 	}
 </style>

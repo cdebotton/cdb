@@ -43,6 +43,23 @@
 	input {
 		padding: var(--space-2);
 		border: none;
+		border-bottom: 1px solid currentColor;
+		background: transparent;
 		border-radius: 3px;
+		color: hsl(var(--color-text));
+		font-size: var(--font-size-3);
+		font-weight: 100;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	label {
+		padding: 0 0 0 var(--space-2);
+		font-size: var(--font-size-1);
+		font-weight: 900;
+		letter-spacing: var(--tracking--3);
+		text-transform: uppercase;
 	}
 </style>
