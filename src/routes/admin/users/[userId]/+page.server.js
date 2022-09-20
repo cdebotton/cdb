@@ -1,28 +1,14 @@
 // @ts-nocheck
 import { error } from '@sveltejs/kit';
 
-import { Api, ApiError } from '$lib/api';
+import { fetcher, ApiError } from '$lib/api';
 
-/**
- * @typedef User
- * @type {object}
- * @property {string} id The users uuid
- * @property {string} [firstName] Optional first name
- * @property {string} [lastName] Optional last name
- * @property {Account} account The user's account details
- */
-
-/**
- * @typedef Account
- * @type {object}
- * @property {string} email The user's email
- */
+let getUser = fetcher.path('/users/{id}').method('get').create();
 
 /** @param {Parameters<import('./$types').PageServerLoad<{ user: User }>>} event */
 export async function load({ params }) {
 	try {
-		/** @type {User} */
-		let user = await Api.get(`users/${params.userId}`).json();
+		let { data: user } = await getUser({ id: params.userId });
 
 		return {
 			user

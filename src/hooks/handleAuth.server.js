@@ -1,4 +1,6 @@
-import { Api } from '$lib/api';
+import { fetcher } from '$lib/api';
+
+let revalidate = fetcher.path('/accounts/revalidate').method('post').create();
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handleAuth({ event, resolve }) {
@@ -7,9 +9,7 @@ export async function handleAuth({ event, resolve }) {
 
 	if (refreshToken && !accessToken) {
 		try {
-			let result = await Api.post('accounts/revalidate')
-				.body({ refreshToken: refreshToken })
-				.json();
+			let { data: result } = await revalidate({ refreshToken });
 
 			event.cookies.set('accessToken', result.accessToken, {
 				httpOnly: true,

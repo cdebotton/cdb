@@ -1,23 +1,28 @@
 import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 import { dev } from '$app/environment';
-import { Api } from '$lib/api';
+import { fetcher } from '$lib/api';
+
+let authorize = fetcher.path('/accounts/authorize').method('post').create();
 
 /** @type import('./$types').Actions */
 export const actions = {
 	default: async ({ request, url, cookies }) => {
 		let form = await request.formData();
-		let email = form.get('email');
-		let password = form.get('password');
+		let email = form.get('email')?.toString();
+		let password = form.get('password')?.toString();
 
-		let { accessToken, expiresIn, refreshToken, refreshTokenExpires } = await Api.post(
-			'accounts/authorize'
-		)
-			.body({
-				clientId: email,
-				clientSecret: password
-			})
-			.json();
+		if (!email || !password) {
+			throw error(401, 'Missing email and/or password');
+		}
+
+		let {
+			data: { accessToken, expiresIn, refreshToken, refreshTokenExpires }
+		} = await authorize({
+			clientId: email,
+			clientSecret: password
+		});
 
 		cookies.set('accessToken', accessToken, {
 			httpOnly: true,

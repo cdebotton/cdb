@@ -1,24 +1,13 @@
-/**
- * @typedef Account
- * @type {object}
- * @property {string} email
- *
- * @typedef User
- * @type {object}
- * @property {string} id
- * @property {string} firstName
- * @property {string} lastName
- * @property {Date} createdAt
- * @property {Date|null} updatedAt
- * @property {Account} account
- */
+import { fetcher } from '$lib/api';
 
-import { Api } from '$lib/api';
+let getUsers = fetcher.path('/users').method('get').create();
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals }) {
-	/** @type {User[]} */
-	let users = await Api.get('users').bearer(locals.accessToken).json();
+	let { data: users } = await getUsers(
+		{},
+		{ headers: { Authorization: `Bearer ${locals.accessToken}` } }
+	);
 
 	return {
 		users
