@@ -4,7 +4,7 @@
 
 	/**
 	 * Format a date for the grid
-	 * @param {Date|null} date
+	 * @param {string|null} [date]
 	 * @returns {string} The formatted date
 	 */
 	function formatDate(date) {
@@ -16,7 +16,7 @@
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
-		}).format(date);
+		}).format(parseInt(date));
 	}
 </script>
 

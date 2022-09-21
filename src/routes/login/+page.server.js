@@ -17,28 +17,36 @@ export const actions = {
 			throw error(401, 'Missing email and/or password');
 		}
 
-		let {
-			data: { accessToken, expiresIn, refreshToken, refreshTokenExpires }
-		} = await authorize({
-			clientId: email,
-			clientSecret: password
-		});
+		/** @type {string} */
+		let redirectUri = '/admin';
+		try {
+			let {
+				data: { accessToken, expiresIn, refreshToken, refreshTokenExpires }
+			} = await authorize({
+				clientId: email,
+				clientSecret: password
+			});
 
-		cookies.set('accessToken', accessToken, {
-			httpOnly: true,
-			secure: !dev,
-			path: '/',
-			expires: new Date(expiresIn)
-		});
+			cookies.set('accessToken', accessToken, {
+				httpOnly: true,
+				secure: !dev,
+				path: '/',
+				expires: new Date(expiresIn)
+			});
 
-		cookies.set('refreshToken', refreshToken, {
-			httpOnly: true,
-			secure: !dev,
-			path: '/',
-			expires: new Date(refreshTokenExpires)
-		});
+			cookies.set('refreshToken', refreshToken, {
+				httpOnly: true,
+				secure: !dev,
+				path: '/',
+				expires: new Date(refreshTokenExpires)
+			});
 
-		let redirectUri = url.searchParams.get('redirect_uri') ?? '/admin';
+			redirectUri = url.searchParams.get('redirect_uri') ?? redirectUri;
+		} catch (e) {
+			if (e instanceof authorize.Error) {
+				throw error(e.status, e.data.error);
+			}
+		}
 
 		throw redirect(303, redirectUri);
 	}

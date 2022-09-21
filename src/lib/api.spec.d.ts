@@ -37,6 +37,25 @@ export interface components {
       clientId: string;
       clientSecret: string;
     };
+    Error:
+      | {
+          ValidationError?: components["schemas"]["ValidationErrors"];
+        }
+      | {
+          DbError?: components["schemas"]["sqlx.Error"];
+        }
+      | "WrongCredentials"
+      | "MissingCredentials"
+      | "InvalidRefreshToken"
+      | "TokenCreation"
+      | "InvalidToken"
+      | "NotFound"
+      | {
+          HyperError?: components["schemas"]["hyper.Error"];
+        }
+      | {
+          MalformedData?: components["schemas"]["serde_json.Error"];
+        };
     RevalidatePayload: {
       /** Format: uuid */
       refreshToken: string;
@@ -77,7 +96,11 @@ export interface operations {
         };
       };
       /** Invalid credentials */
-      404: unknown;
+      401: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
     };
     requestBody: {
       content: {
