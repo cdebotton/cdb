@@ -20,37 +20,29 @@
 	}
 </script>
 
-<div>
-	<h2>Users</h2>
+<h2>Users</h2>
 
-	<ul>
-		{#each data.users as user (user.id)}
+<table>
+	<thead>
+		<th>Email</th>
+		<th>Name</th>
+		<th>Created at</th>
+		<th>Updated at</th>
+	</thead>
+	<tbody>
+		{#each data.users as user}
 			{@const fullName = `${user.firstName} ${user.lastName}`}
-			<li>
-				<a title={fullName} href={`/admin/users/${user.id}`}>
-					<span class="field primary">
-						<span class="label">{user.account.email}</span>
-						<span class="value">{fullName}</span>
-					</span>
-					<span class="field">
-						<span class="label">Created</span>
-						<span class="value">{formatDate(user.createdAt)}</span>
-					</span>
-					<span class="field">
-						<span class="label">Last updated</span>
-						<span class="value">{formatDate(user.updatedAt)}</span>
-					</span>
-				</a>
-			</li>
+			<tr>
+				<td>{user.account.email}</td>
+				<td>{fullName}</td>
+				<td>{formatDate(user.createdAt)}</td>
+				<td>{formatDate(user.updatedAt)}</td>
+			</tr>
 		{/each}
-	</ul>
-</div>
+	</tbody>
+</table>
 
 <style>
-	div {
-		padding: 0 var(--space-6);
-	}
-
 	h2 {
 		padding: 0 0 var(--space-3);
 		font-size: var(--font-size-3);

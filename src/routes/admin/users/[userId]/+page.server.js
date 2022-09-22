@@ -18,7 +18,7 @@ export async function load({ params }) {
 			throw error(err.status, { message: err.message });
 		}
 
-		throw error(500, { message: 'Uh oh, something happened' });
+		throw err;
 	}
 }
 

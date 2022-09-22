@@ -56,6 +56,11 @@
 
 	/* Colors */
 	--color-grayscale-1: 212 10% 5%;
-	--color-grayscale-2: 212 10% 9%;
+	--color-grayscale-2: 212 10% 17.5%;
+	--color-grayscale-3: 212 10% 30%;
+	--color-grayscale-4: 212 10% 43%;
+	--color-grayscale-5: 212 10% 60.3%;
+	--color-grayscale-6: 212 5% 73%;
+	--color-grayscale-7: 212 5% 88%;
 	--color-grayscale-8: 212 5% 98%;
 }

@@ -13,10 +13,13 @@
 </li>
 
 <style>
+	li {
+		border-bottom: 1px solid hsl(var(--color-text));
+	}
 	a {
-		font-weight: 700;
+		font-size: var(--font-size-3);
+		font-weight: 800;
 		letter-spacing: var(--tracking--3);
 		text-decoration: none;
-		text-transform: uppercase;
 	}
 </style>

@@ -1,9 +1,9 @@
 @import './_core.css';
 
 :root {
-	--color-background: var(--color-grayscale-2);
-	--color-text: var(--color-grayscale-8);
-	--color-surface: var(--color-grayscale-8);
+	--color-background: var(--color-grayscale-1);
+	--color-surface: var(--color-grayscale-2);
+	--color-text: var(--color-grayscale-6);
 }
 
 *,

@@ -17,8 +17,6 @@ export const actions = {
 			throw error(401, 'Missing email and/or password');
 		}
 
-		/** @type {string} */
-		let redirectUri = '/admin';
 		try {
 			let {
 				data: { accessToken, expiresIn, refreshToken, refreshTokenExpires }
@@ -41,14 +39,16 @@ export const actions = {
 				expires: new Date(refreshTokenExpires)
 			});
 
-			redirectUri = url.searchParams.get('redirect_uri') ?? redirectUri;
+			let redirectUri = url.searchParams.get('redirect_uri') ?? '/admin';
+
+			throw redirect(303, redirectUri);
 		} catch (e) {
 			if (e instanceof authorize.Error) {
 				throw error(e.status, e.data.error);
 			}
-		}
 
-		throw redirect(303, redirectUri);
+			throw e;
+		}
 	}
 };
 
