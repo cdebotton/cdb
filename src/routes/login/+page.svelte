@@ -2,7 +2,7 @@
 	import { applyAction, enhance } from '$app/forms';
 	import Input from '$lib/Input.svelte';
 
-	/** @type {App.PageError|null} */
+	/** @type {App.Error|null} */
 	let error = null;
 
 	/** @type {import('$app/forms').SubmitFunction} */

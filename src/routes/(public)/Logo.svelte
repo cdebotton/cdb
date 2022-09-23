@@ -46,13 +46,7 @@
 
 	.label,
 	.text {
-		background: linear-gradient(
-			to bottom right,
-			hsl(200 100% 46.6%) 0%,
-			hsl(288.73 62.5% 55%) 45%,
-			hsl(288.73 62.5% 55%) 55%,
-			hsl(200 100% 46.6%) 100%
-		);
+		background: var(--brand-gradient);
 		-webkit-background-clip: text;
 		background-clip: text;
 		background-position: 0 0;

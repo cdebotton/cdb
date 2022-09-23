@@ -63,4 +63,13 @@
 	--color-grayscale-6: 212 5% 73%;
 	--color-grayscale-7: 212 5% 88%;
 	--color-grayscale-8: 212 5% 98%;
+
+	/* Utils */
+	--brand-gradient: linear-gradient(
+		to bottom right,
+		hsl(200 100% 46.6%) 0%,
+		hsl(288.73 62.5% 55%) 45%,
+		hsl(288.73 62.5% 55%) 55%,
+		hsl(200 100% 46.6%) 100%
+	);
 }

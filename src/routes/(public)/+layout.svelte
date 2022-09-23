@@ -1,7 +1,8 @@
 <script>
-	import Link from './Link.svelte';
 	import Logo from './Logo.svelte';
-	import NavItem from './NavItem.svelte';
+
+	import Link from '$lib/Link.svelte';
+	import NavItem from '$lib/NavItem.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig} */
 	let config = {

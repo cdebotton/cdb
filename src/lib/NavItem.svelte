@@ -1,7 +1,14 @@
-<script context="module">
+<script>
 	import { crossfade } from 'svelte/transition';
 
 	import { animation } from '$lib/animation';
+
+	/** @type {string} */
+	export let label;
+	export let active = false;
+
+	/** @type {import('$lib/animation').AnimationConfig} */
+	export let config;
 
 	let key = Symbol.for('active');
 	let [send, receive] = crossfade({
@@ -9,25 +16,18 @@
 			return {
 				duration: 75,
 				css: (t) => `
-					opacity: ${t};
-					transform: scaleX(${t});
-				`
+				opacity: ${t};
+				transform: scaleX(${t});
+			`
 			};
 		}
 	});
+
+	export let tight = false;
 </script>
 
-<script>
-	/** @type {string} */
-	export let label;
-	export let active = false;
-
-	/** @type {import('$lib/animation').AnimationConfig} */
-	export let config;
-</script>
-
-<span class:active class="label">{label}</span>
-<span use:animation={config} class="text">
+<span class:active class="label" class:tight>{label}</span>
+<span use:animation={config} class="text" class:tight>
 	{#if active}
 		<span class="indicator" in:receive={{ key }} out:send={{ key }} />
 	{/if}
@@ -47,13 +47,7 @@
 	.text {
 		position: relative;
 		padding: var(--space-3) var(--space-2);
-		background: linear-gradient(
-			to bottom right,
-			hsl(200 100% 46.6%) 0%,
-			hsl(288.73 62.5% 55%) 45%,
-			hsl(288.73 62.5% 55%) 55%,
-			hsl(200 100% 46.6%) 100%
-		);
+		background: var(--brand-gradient);
 		background-position: 0 0;
 		background-repeat: repeat;
 		background-size: 400vw 400vh;
@@ -63,6 +57,10 @@
 		text-transform: uppercase;
 	}
 
+	.tight {
+		padding: var(--space-2) var(--space-2);
+	}
+
 	.content {
 		position: relative;
 	}
@@ -70,7 +68,7 @@
 	.label {
 		position: relative;
 		padding: var(--space-2) var(--space-1);
-		background-color: hsl(var(--color-surface));
+		background-color: hsl(var(--color-grayscale-7));
 		font-size: var(--font-size-1);
 		font-weight: 600;
 		letter-spacing: var(--tracking-4);
@@ -86,7 +84,7 @@
 
 	.indicator {
 		position: absolute;
-		background-color: hsl(var(--color-surface));
+		background-color: hsl(var(--color-grayscale-7));
 		inset: 0;
 		transform-origin: 0 0;
 	}

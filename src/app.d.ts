@@ -9,7 +9,7 @@ declare namespace App {
 		refreshToken?: string;
 	}
 
-	interface PageError {
+	interface Error {
 		message: string;
 	}
 	// interface Platform {}
