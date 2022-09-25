@@ -1,6 +1,8 @@
 <script>
 	import { applyAction, enhance } from '$app/forms';
 	import Input from '$lib/Input.svelte';
+	import EnvelopeIcon from '$lib/icons/EnvelopeIcon.svelte';
+	import KeyIcon from '$lib/icons/KeyIcon.svelte';
 
 	/** @type {App.Error|null} */
 	let error = null;
@@ -24,14 +26,15 @@
 	}
 </script>
 
-<div class="container">
+<div>
 	<form method="POST" use:enhance={formEnhancer}>
-		<fieldset>
-			<legend>Login</legend>
-			<Input name="email" label="Email" id="email" />
-			<Input name="password" type="password" label="Password" id="password" />
-		</fieldset>
-		<button type="submit">Go</button>
+		<Input name="email" label="Email" id="email">
+			<EnvelopeIcon />
+		</Input>
+		<Input name="password" type="password" label="Password" id="password">
+			<KeyIcon />
+		</Input>
+		<button type="submit">Login</button>
 		<div>
 			{#if error}
 				<p class="error">{error.message}</p>
@@ -41,35 +44,32 @@
 </div>
 
 <style>
-	.container {
+	div {
 		display: grid;
 		width: 100%;
 		height: 100%;
-		padding: var(--space-10);
-		place-content: center;
+		grid-template-columns: minmax(20px 200px);
+		place-content: center stretch;
 	}
 
 	form {
 		display: grid;
-		gap: var(--space-2);
-		grid-template-rows: min-content min-content 1rem;
+		padding: 4rem;
+		gap: 1rem;
 	}
 
-	fieldset {
-		display: grid;
-		padding: var(--space-2);
+	button {
+		display: inline-block;
+		width: 100%;
+		padding: 0.5rem;
 		border: none;
-		gap: var(--space-2);
-	}
-
-	legend {
-		padding: 0;
-		font-size: var(--font-size-3);
-		font-weight: 900;
-	}
-
-	.error {
-		font-size: var(--font-size-1);
-		font-weight: 900;
+		background: linear-gradient(to bottom, hsl(200 50% 50%), hsl(210 50% 50%));
+		border-radius: 3px;
+		box-shadow: 0 0 20px hsl(0 0% 0% / 0.2);
+		color: hsl(212 0% 98%);
+		cursor: pointer;
+		font-size: 18px;
+		font-weight: 500;
+		letter-spacing: -0.025em;
 	}
 </style>

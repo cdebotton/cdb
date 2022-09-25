@@ -14,14 +14,3 @@
 >
 	<button title="Logout" type="submit">Logout</button>
 </form>
-
-<style>
-	button {
-		padding: var(--space-2);
-		border: none;
-		background: none;
-		border-radius: 3px;
-		color: var(--text-color);
-		cursor: pointer;
-	}
-</style>

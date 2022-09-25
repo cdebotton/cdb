@@ -57,7 +57,7 @@
 		backdrop-filter: blur(8px);
 		background-color: hsl(var(--color-background) / 0.85);
 		gap: var(--space-1);
-		place-items: start;
+		place-items: flex-start;
 	}
 
 	nav {
@@ -76,7 +76,7 @@
 		position: relative;
 		display: flex;
 		flex-flow: row-reverse;
-		align-items: start;
+		align-items: flex-start;
 		padding: 0 var(--space-1);
 		color: hsl(var(--color-text));
 		gap: var(--space-1\2);
