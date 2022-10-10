@@ -26,7 +26,7 @@
 <style>
 	div {
 		width: 100%;
-		padding: var(--space-4);
+		padding: var(--space-md);
 		aspect-ratio: 16 / 9;
 	}
 
@@ -36,13 +36,13 @@
 	}
 
 	h3 {
-		font-size: var(--font-size-1);
+		font-size: var(--text-body-sm);
 		font-weight: 800;
 		text-transform: capitalize;
 	}
 
 	h4 {
-		font-size: var(--font-size-1);
+		font-size: var(--text-body-sm);
 		font-weight: 600;
 	}
 </style>

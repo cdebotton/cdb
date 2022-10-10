@@ -1,15 +1,5 @@
-<script>
+<script context="module">
 	import { crossfade } from 'svelte/transition';
-
-	import { animation } from '$lib/animation';
-
-	/** @type {string} */
-	export let label;
-	export let active = false;
-
-	/** @type {import('$lib/animation').AnimationConfig} */
-	export let config;
-
 	let key = Symbol.for('active');
 	let [send, receive] = crossfade({
 		fallback() {
@@ -22,12 +12,21 @@
 			};
 		}
 	});
-
-	export let tight = false;
 </script>
 
-<span class:active class="label" class:tight>{label}</span>
-<span use:animation={config} class="text" class:tight>
+<script>
+	import { animation } from '$lib/animation';
+
+	/** @type {string} */
+	export let label;
+	export let active = false;
+
+	/** @type {import('$lib/animation').AnimationConfig} */
+	export let config;
+</script>
+
+<span class:active class="label">{label}</span>
+<span use:animation={config} class="text">
 	{#if active}
 		<span class="indicator" in:receive={{ key }} out:send={{ key }} />
 	{/if}
@@ -39,26 +38,23 @@
 <style>
 	.label,
 	.text {
-		color: hsl(var(--color-background));
+		color: var(--color-background);
 		line-height: 1;
 		writing-mode: vertical-lr;
 	}
 
 	.text {
 		position: relative;
-		padding: var(--space-3) var(--space-2);
+		padding: var(--space-sm) var(--space-xs);
+		border-radius: var(--radii-subtle);
 		background: var(--brand-gradient);
 		background-position: 0 0;
 		background-repeat: repeat;
 		background-size: 400vw 400vh;
-		font-size: var(--font-size-1);
+		font-size: var(--text-body-sm);
 		font-weight: 900;
 		letter-spacing: var(--tracking--2);
 		text-transform: uppercase;
-	}
-
-	.tight {
-		padding: var(--space-2) var(--space-2);
 	}
 
 	.content {
@@ -67,14 +63,16 @@
 
 	.label {
 		position: relative;
-		padding: var(--space-2) var(--space-1);
-		background-color: hsl(var(--color-grayscale-7));
-		font-size: var(--font-size-1);
+		padding: var(--space-xs) var(--space-2xs);
+		background-color: var(--color-text);
+		font-size: var(--text-body-sm);
 		font-weight: 600;
 		letter-spacing: var(--tracking-4);
 		opacity: 0;
-		transform: translateX(calc(-1 * var(--space-4)));
-		transition: all 225ms ease-in-out;
+		transform: translateX(calc(-1 * var(--space-md)));
+		transition-duration: 175ms;
+		transition-property: transform, opacity;
+		transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 	}
 
 	.label.active {
@@ -84,7 +82,7 @@
 
 	.indicator {
 		position: absolute;
-		background-color: hsl(var(--color-grayscale-7));
+		background-color: var(--color-text);
 		inset: 0;
 		transform-origin: 0 0;
 	}

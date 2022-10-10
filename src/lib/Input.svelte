@@ -17,17 +17,6 @@
 	/** @type {string} */
 	export let id = name;
 
-	/**
-	 * @typedef Grid
-	 * @type {object}
-	 * @property {import('csstype').Property.GridArea} [area]
-	 * @property {import('csstype').Property.GridRow} [row]
-	 * @property {import('csstype').Property.GridColumn} [column]
-	 */
-
-	/** @type {Grid} */
-	export let grid = {};
-
 	/** @type {svelte.JSX.FormEventHandler<HTMLInputElement>} */
 	function handleInput(event) {
 		value = type.match(/^(number|range)/)
@@ -36,79 +25,45 @@
 	}
 </script>
 
-<div style:gridArea={grid.area} style:gridColumn={grid.column} style:gridRow={grid.row}>
-	<span class="input-wrapper">
-		<span class="input-field">
-			{#if $$slots.default}
-				<span class="icon">
-					<slot />
-				</span>
-			{/if}
-			<input {name} {id} {type} {placeholder} {value} on:input={handleInput} />
-		</span>
-		<span class="input-underline" />
-	</span>
+<div>
 	<label for={id}>{label}</label>
+	<input {name} {id} {type} {placeholder} {value} on:input={handleInput} />
 </div>
 
 <style>
 	div {
-		display: grid;
-	}
-
-	.input-wrapper {
-		position: relative;
-		display: flex;
-		flex-flow: column;
-	}
-
-	.input-field {
-		display: grid;
-		width: 100%;
+		display: inline-grid;
+		overflow: hidden;
 		align-items: baseline;
-		border-left: 1px solid hsl(0 0% 84%);
-		grid-auto-flow: columns;
+		padding: var(--space-none) var(--space-none) var(--space-none) 0;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radii-subtle);
+		background-color: var(--color-surface);
+		box-shadow: 0 0 10px var(--color-subtle-border);
+		grid-auto-flow: column;
 		grid-template-columns: min-content auto;
 	}
 
-	.icon {
-		width: 1rem;
-		margin: 0 1rem;
-		aspect-ratio: 1;
+	label {
+		padding: var(--space-sm) var(--space-sm) var(--space-sm);
+		border-right: 1px solid var(--color-subtle-border);
+		background-color: var(--color-subtle-background);
+		font-size: var(--text-body-sm);
+		font-weight: var(--text-black);
+		opacity: 0;
+		text-align: end;
+		text-transform: uppercase;
+	}
+
+	div:has(input:not(:placeholder-shown)) label {
+		opacity: 1;
 	}
 
 	input {
-		padding: 8px 4px;
+		height: 100%;
+		padding: var(--space-xs) var(--space-md);
 		border: none;
 		background-color: transparent;
-		font-size: 16px;
-		font-weight: 400;
-	}
-
-	input:focus {
-		outline: none;
-	}
-
-	.input-underline {
-		display: inline-block;
-		width: 100%;
-		height: 1px;
-		background-color: hsl(0 0% 84%);
-	}
-
-	label {
-		padding: 2px 52px;
-		font-size: 12px;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-		opacity: 0;
-		text-transform: uppercase;
-		transform: translate3d(0, -12px, 0);
-		transition: all 175ms ease-in-out;
-	}
-
-	.input-wrapper:not(:has(input:placeholder-shown)) + label {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
+		color: currentColor;
 	}
 </style>

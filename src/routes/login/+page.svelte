@@ -1,8 +1,7 @@
 <script>
 	import { applyAction, enhance } from '$app/forms';
+	import Button from '$lib/Button.svelte';
 	import Input from '$lib/Input.svelte';
-	import EnvelopeIcon from '$lib/icons/EnvelopeIcon.svelte';
-	import KeyIcon from '$lib/icons/KeyIcon.svelte';
 
 	/** @type {App.Error|null} */
 	let error = null;
@@ -28,13 +27,9 @@
 
 <div>
 	<form method="POST" use:enhance={formEnhancer}>
-		<Input name="email" label="Email" id="email">
-			<EnvelopeIcon />
-		</Input>
-		<Input name="password" type="password" label="Password" id="password">
-			<KeyIcon />
-		</Input>
-		<button type="submit">Login</button>
+		<Input name="email" label="Email" id="email" />
+		<Input name="password" type="password" label="Password" id="password" />
+		<p><Button type="submit">Login</Button></p>
 		<div>
 			{#if error}
 				<p class="error">{error.message}</p>
@@ -46,30 +41,15 @@
 <style>
 	div {
 		display: grid;
-		width: 100%;
-		height: 100%;
+		width: var(--size-full);
+		height: var(--size-full);
 		grid-template-columns: minmax(20px 200px);
 		place-content: center stretch;
 	}
 
 	form {
 		display: grid;
-		padding: 4rem;
-		gap: 1rem;
-	}
-
-	button {
-		display: inline-block;
-		width: 100%;
-		padding: 0.5rem;
-		border: none;
-		background: linear-gradient(to bottom, hsl(200 50% 50%), hsl(210 50% 50%));
-		border-radius: 3px;
-		box-shadow: 0 0 20px hsl(0 0% 0% / 0.2);
-		color: hsl(212 0% 98%);
-		cursor: pointer;
-		font-size: 18px;
-		font-weight: 500;
-		letter-spacing: -0.025em;
+		padding: var(--space-xl);
+		gap: var(--space-sm);
 	}
 </style>

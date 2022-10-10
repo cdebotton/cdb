@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark-theme" lang="en">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
@@ -7,6 +7,15 @@
 		%sveltekit.head%
 	</head>
 	<body>
+		<script>
+			let sessionValue = window.sessionStorage.getItem('colorMode');
+			let isDark =
+				sessionValue === 'dark' ||
+				(!sessionValue && window.matchMedia('(prefers-color-scheme: dark)').matches);
+			if (isDark) {
+				document.documentElement.classList.add('dark-theme');
+			}
+		</script>
 		<div data-app>%sveltekit.body%</div>
 	</body>
 </html>

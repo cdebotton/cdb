@@ -11,7 +11,7 @@
 
 <style>
 	:global(html) {
-		scroll-padding: var(--space-6);
+		scroll-padding: var(--space-xl);
 		scroll-snap-type: y mandatory;
 	}
 </style>

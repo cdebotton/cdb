@@ -3,6 +3,7 @@
 
 	import Link from '$lib/Link.svelte';
 	import NavItem from '$lib/NavItem.svelte';
+	import ThemeButton from '$lib/ThemeButton.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig} */
 	let config = {
@@ -38,6 +39,7 @@
 				</Link>
 			</li>
 		</ul>
+		<ThemeButton />
 	</nav>
 </header>
 <main>
@@ -49,26 +51,28 @@
 		position: fixed;
 		z-index: 1;
 		left: 0;
-		display: flex;
+		display: grid;
 		height: 100vh;
-		flex-flow: column;
-		padding: var(--space-4) var(--space-4);
+		padding: var(--space-md) var(--space-md);
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
-		background-color: hsl(var(--color-background) / 0.85);
-		gap: var(--space-1);
-		place-items: flex-start;
+		background-color: var(--color-background);
+		gap: var(--space-xs);
+		grid-auto-flow: row;
+		grid-template-rows: min-content auto;
 	}
 
 	nav {
-		display: contents;
+		display: grid;
+		align-content: space-between;
+		padding: 0 0 0 var(--space-2xs);
+		justify-items: start;
 	}
 
 	ul {
 		display: grid;
-		padding: 0;
-		padding: 0 0 0 var(--space-1);
-		gap: var(--space-1);
+		align-content: start;
+		gap: var(--space-2xs);
 		list-style: none;
 	}
 
@@ -77,16 +81,16 @@
 		display: flex;
 		flex-flow: row-reverse;
 		align-items: flex-start;
-		padding: 0 var(--space-1);
-		color: hsl(var(--color-text));
-		gap: var(--space-1\2);
+		padding: 0 var(--space-2xs);
+		color: var(--color-text);
+		gap: var(--space-2xs);
 		text-decoration: none;
 	}
 
 	main {
 		position: relative;
 		display: grid;
-		padding: var(--space-5) 0;
+		padding: var(--space-lg) 0;
 		isolation: isolate;
 	}
 </style>

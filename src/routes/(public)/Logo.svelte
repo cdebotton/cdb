@@ -19,12 +19,12 @@
 	h1 {
 		display: inline-flex;
 		flex-flow: row-reverse;
-		padding: var(--space-3) var(--space-2);
+		padding: var(--space-none) var(--space-xs);
 	}
 
 	.label {
-		padding: var(--space-1) 0;
-		font-size: var(--font-size-2);
+		padding: var(--space-2xs) 0;
+		font-size: var(--text-body);
 		font-weight: 300;
 		letter-spacing: var(--tracking-4);
 		opacity: 0;
@@ -38,7 +38,7 @@
 	}
 
 	.text {
-		font-size: var(--font-size-4);
+		font-size: var(--text-heading-xs);
 		font-weight: 900;
 		letter-spacing: var(--tracking--4);
 		text-transform: uppercase;

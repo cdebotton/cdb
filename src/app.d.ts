@@ -7,6 +7,7 @@ declare namespace App {
 	interface Locals {
 		accessToken?: string;
 		refreshToken?: string;
+		theme?: 'light' | 'dark';
 	}
 
 	interface Error {

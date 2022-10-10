@@ -28,14 +28,14 @@
 			<ul>
 				<li>
 					<Link let:active href="/admin/users">
-						<NavItem tight {active} config={gradient} label="ユーザー">
+						<NavItem {active} config={gradient} label="ユーザー">
 							<UsersIcon />
 						</NavItem>
 					</Link>
 				</li>
 				<li>
 					<Link let:active href="/admin/media">
-						<NavItem tight {active} config={gradient} label="メディア">
+						<NavItem {active} config={gradient} label="メディア">
 							<ImageIcon />
 						</NavItem>
 					</Link>
