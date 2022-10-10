@@ -1,9 +1,47 @@
 @import './_core.css';
 
 :root {
-	--color-background: var(--color-grayscale-1);
-	--color-surface: var(--color-grayscale-2);
-	--color-text: var(--color-grayscale-6);
+	--color-black: #000;
+	--color-background: var(--mauve1);
+	--color-subtle-background: var(--mauve2);
+	--color-surface: var(--mauve3);
+	--color-surface-hover: var(--mauve4);
+	--color-surface-active: var(--mauve5);
+	--color-sperator: var(--mauve6);
+	--color-border: var(--mauve7);
+	--color-border-hover: var(--mauve8);
+	--color-solid: var(--mauve9);
+	--color-solid-hover: var(--mauve10);
+	--color-text-subtle: var(--sand11);
+	--color-text: var(--sand12);
+
+	--text-heading: var(--font-size-7);
+	--text-heading-sm: var(--font-size-4);
+	--text-body: var(--font-size-2);
+	--text-body-sm: var(--font-size-1);
+
+	--text-normal: 400;
+	--text-bold: 600;
+	--text-black: 900;
+
+	--radii-none: 0;
+	--radii-subtle: 3px;
+	--radii-round: 50%;
+	--radii-pill: 999px;
+
+	--leading-tight: calc(var(--line-height-base-unit) * 0.72);
+	--leading-none: var(--line-height-base-unit);
+	--leading-normal: calc(var(--line-height-base-unit) * 1.25);
+	--leading-loose: calc(var(--line-height-base-unit) * 1.5);
+
+	/* Utils */
+	--brand-gradient: linear-gradient(
+		to bottom right,
+		var(--blue9) 0%,
+		var(--purple9) 45%,
+		var(--purple9) 55%,
+		var(--blue9) 100%
+	);
 }
 
 *,
@@ -22,13 +60,13 @@
 html {
 	display: grid;
 	height: 100%;
-	background-color: hsl(var(--color-background));
-	color: hsl(var(--color-text));
+	background-color: var(--color-background);
+	color: var(--color-text);
 }
 
 ::-webkit-scrollbar {
-	width: var(--space-1);
-	height: var(--space-1\2);
+	width: var(--space-2xs);
+	height: var(--space-2xs);
 }
 
 ::-webkit-scrollbar-track {

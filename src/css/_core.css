@@ -1,27 +1,32 @@
+@import '@radix-ui/colors/mauve.css';
+@import '@radix-ui/colors/mauveDark.css';
+@import '@radix-ui/colors/sand.css';
+@import '@radix-ui/colors/sandDark.css';
+@import '@radix-ui/colors/blue.css';
+@import '@radix-ui/colors/blueDark.css';
+@import '@radix-ui/colors/purple.css';
+@import '@radix-ui/colors/purpleDark.css';
+
 :root {
-	--base-unit: 0.25rem; /* 4px */
-	--base-unit-half: calc(var(--base-unit) / 2); /* 2px */
+	--grid-unit: 0.5rem; /* 8px */
 
 	/* Space, 8x8 grid */
-	--space-1\2: var(--base-unit-half); /* 2px */
-	--space-1: var(--base-unit); /* 4px */
-	--space-2: calc(var(--base-unit) * 2); /* 8px */
-	--space-3: calc(var(--base-unit) * 4); /* 16px */
-	--space-4: calc(var(--base-unit) * 6); /* 24px */
-	--space-5: calc(var(--base-unit) * 8); /* 32px */
-	--space-6: calc(var(--base-unit) * 10); /* 40px */
-	--space-7: calc(var(--base-unit) * 12); /* 48px */
-	--space-8: calc(var(--base-unit) * 16); /* 64px */
-	--space-9: calc(var(--base-unit) * 20); /* 80px */
-	--space-10: calc(var(--base-unit) * 24); /* 96px */
-	--space-11: calc(var(--base-unit) * 28); /* 112px */
-	--space-12: calc(var(--base-unit) * 32); /* 128px */
-	--space-13: calc(var(--base-unit) * 36); /* 144px */
-	--space-14: calc(var(--base-unit) * 40); /* 160px */
+	--space-none: 0;
+	--space-2xs: calc(var(--grid-unit) / 2); /* 4px */
+	--space-xs: calc(var(--grid-unit)); /* 8px */
+	--space-sm: calc(var(--grid-unit) * 2); /* 16px */
+	--space-md: calc(var(--grid-unit) * 3); /* 24px */
+	--space-lg: calc(var(--grid-unit) * 5); /* 40px */
+	--space-xl: calc(var(--grid-unit) * 8); /* 64px */
+	--space-2xl: calc(var(--grid-unit) * 12); /* 96px */
+	--space-3xl: calc(var(--grid-unit) * 24); /* 192px */
+
+	--size-full: 100%;
+	--size-w-screen: 100vw;
+	--size-h-screen: 100vh;
 
 	/* Tracking */
 	--tracking-base-unit: 0.0125em;
-
 	--tracking--4: calc(var(--tracking-base-unit) * -6); /* -0.075em */
 	--tracking--3: calc(var(--tracking-base-unit) * -4); /* -0.05em */
 	--tracking--2: calc(var(--tracking-base-unit) * -2); /* -0.025em */
@@ -34,11 +39,6 @@
 
 	/* Leading */
 	--line-height-base-unit: 1;
-
-	--leading-tight: calc(var(--line-height-base-unit) * 0.72);
-	--leading-none: var(--line-height-base-unit);
-	--leading-normal: calc(var(--line-height-base-unit) * 1.25);
-	--leading-loose: calc(var(--line-height-base-unit) * 1.5);
 
 	/* Font sizes */
 	--font-base-unit: 1rem;
@@ -53,23 +53,4 @@
 	--font-size-7: calc(var(--font-size-6) * var(--font-scale)); /* 48.83 px*/
 	--font-size-8: calc(var(--font-size-7) * var(--font-scale)); /* 48.83 px*/
 	--font-size-9: calc(var(--font-size-8) * var(--font-scale)); /* 61.04 px*/
-
-	/* Colors */
-	--color-grayscale-1: 212 10% 5%;
-	--color-grayscale-2: 212 10% 17.5%;
-	--color-grayscale-3: 212 10% 30%;
-	--color-grayscale-4: 212 10% 43%;
-	--color-grayscale-5: 212 10% 60.3%;
-	--color-grayscale-6: 212 5% 73%;
-	--color-grayscale-7: 212 5% 88%;
-	--color-grayscale-8: 212 5% 98%;
-
-	/* Utils */
-	--brand-gradient: linear-gradient(
-		to bottom right,
-		hsl(200 100% 46.6%) 0%,
-		hsl(288.73 62.5% 55%) 45%,
-		hsl(288.73 62.5% 55%) 55%,
-		hsl(200 100% 46.6%) 100%
-	);
 }
