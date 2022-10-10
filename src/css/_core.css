@@ -2,10 +2,16 @@
 @import '@radix-ui/colors/mauveDark.css';
 @import '@radix-ui/colors/sand.css';
 @import '@radix-ui/colors/sandDark.css';
+@import '@radix-ui/colors/gold.css';
+@import '@radix-ui/colors/goldDark.css';
+@import '@radix-ui/colors/yellow.css';
+@import '@radix-ui/colors/yellowDark.css';
 @import '@radix-ui/colors/blue.css';
 @import '@radix-ui/colors/blueDark.css';
 @import '@radix-ui/colors/purple.css';
 @import '@radix-ui/colors/purpleDark.css';
+@import '@radix-ui/colors/indigo.css';
+@import '@radix-ui/colors/indigoDark.css';
 
 :root {
 	--grid-unit: 0.5rem; /* 8px */

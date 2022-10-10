@@ -12,8 +12,8 @@
 	--color-border-hover: var(--mauve8);
 	--color-solid: var(--mauve9);
 	--color-solid-hover: var(--mauve10);
-	--color-text-subtle: var(--sand11);
-	--color-text: var(--sand12);
+	--color-text-subtle: var(--mauve11);
+	--color-text: var(--mauve12);
 
 	--text-heading: var(--font-size-7);
 	--text-heading-sm: var(--font-size-4);
@@ -42,6 +42,66 @@
 		var(--purple9) 55%,
 		var(--blue9) 100%
 	);
+}
+
+.palette-yellow {
+	--color-background: var(--yellow1);
+	--color-subtle-background: var(--yellow2);
+	--color-surface: var(--yellow3);
+	--color-surface-hover: var(--yellow4);
+	--color-surface-active: var(--yellow5);
+	--color-sperator: var(--yellow6);
+	--color-border: var(--yellow7);
+	--color-border-hover: var(--yellow8);
+	--color-solid: var(--yellow9);
+	--color-solid-hover: var(--yellow10);
+	--color-text-subtle: var(--yellow11);
+	--color-text: var(--yellow12);
+}
+
+.palette-blue {
+	--color-background: var(--blue1);
+	--color-subtle-background: var(--blue2);
+	--color-surface: var(--blue3);
+	--color-surface-hover: var(--blue4);
+	--color-surface-active: var(--blue5);
+	--color-sperator: var(--blue6);
+	--color-border: var(--blue7);
+	--color-border-hover: var(--blue8);
+	--color-solid: var(--blue9);
+	--color-solid-hover: var(--blue10);
+	--color-text-subtle: var(--blue11);
+	--color-text: var(--blue12);
+}
+
+.palette-purple {
+	--color-background: var(--purple1);
+	--color-subtle-background: var(--purple2);
+	--color-surface: var(--purple3);
+	--color-surface-hover: var(--purple4);
+	--color-surface-active: var(--purple5);
+	--color-sperator: var(--purple6);
+	--color-border: var(--purple7);
+	--color-border-hover: var(--purple8);
+	--color-solid: var(--purple9);
+	--color-solid-hover: var(--purple10);
+	--color-text-subtle: var(--purple11);
+	--color-text: var(--purple12);
+}
+
+.palette-indigo {
+	--color-background: var(--indigo1);
+	--color-subtle-background: var(--indigo2);
+	--color-surface: var(--indigo3);
+	--color-surface-hover: var(--indigo4);
+	--color-surface-active: var(--indigo5);
+	--color-sperator: var(--indigo6);
+	--color-border: var(--indigo7);
+	--color-border-hover: var(--indigo8);
+	--color-solid: var(--indigo9);
+	--color-solid-hover: var(--indigo10);
+	--color-text-subtle: var(--indigo11);
+	--color-text: var(--indigo12);
 }
 
 *,
