@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 import { dev } from '$app/environment';
 import { fetcher } from '$lib/api';
 
-let authorize = fetcher.path('/accounts/authorize').method('post').create();
+let authorize = fetcher.path('/auth/authorize').method('post').create();
 
 /** @type import('./$types').Actions */
 export const actions = {

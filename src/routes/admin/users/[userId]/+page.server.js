@@ -1,25 +1,19 @@
-// @ts-nocheck
-import { error } from '@sveltejs/kit';
-
-import { fetcher, ApiError } from '$lib/api';
+import { fetcher } from '$lib/api';
 
 let getUser = fetcher.path('/users/{id}').method('get').create();
 
-/** @param {Parameters<import('./$types').PageServerLoad<{ user: User }>>} event */
+/**
+ * @typedef UserResponse
+ * @type {import('openapi-typescript-fetch').FetchReturnType<typeof getUser>}
+ * @typedef PageServerLoad
+ * @type {import('./$types').PageServerLoad<UserResponse>}
+ */
+
+/** @type {PageServerLoad} */
 export async function load({ params }) {
-	try {
-		let { data: user } = await getUser({ id: params.userId });
+	let { data } = await getUser({ id: params.userId });
 
-		return {
-			user
-		};
-	} catch (err) {
-		if (err instanceof ApiError) {
-			throw error(err.status, { message: err.message });
-		}
-
-		throw err;
-	}
+	return data;
 }
 
 /** */

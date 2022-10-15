@@ -4,27 +4,32 @@
  */
 
 export interface paths {
-  "/accounts/authorize": {
+  "/accounts/register": {
+    post: operations["register"];
+  };
+  "/auth/authorize": {
     post: operations["authorize"];
   };
-  "/accounts/revalidate": {
+  "/auth/revalidate": {
     post: operations["revalidate"];
   };
   "/users": {
-    get: operations["get_users"];
+    get: operations["find_users"];
   };
   "/users/{id}": {
-    get: operations["get_user"];
+    get: operations["find_user_by_id"];
   };
 }
 
 export interface components {
   schemas: {
-    Account: {
-      /** @example major.tom@gmail.com */
-      email: string;
-    };
     AuthBody: {
+      /** @example david.bowie@gmail.com */
+      clientId: string;
+      /** @example Z1gGy.Pl4y3d!GuI74R */
+      clientSecret: string;
+    };
+    AuthResponse: {
       accessToken: string;
       /** Format: int64 */
       expiresIn: number;
@@ -33,44 +38,62 @@ export interface components {
       refreshTokenExpires: number;
       tokenType: string;
     };
-    AuthPayload: {
-      clientId: string;
-      clientSecret: string;
+    /** @enum {string} */
+    Error: "NotFound" | "InternalError" | "InvalidToken" | "ValidationError";
+    RegisterBody: {
+      /** @example bark.ruffalo@gmail.com */
+      email: string;
+      /** @example Mark */
+      firstName?: string;
+      /** @example Ruffalo */
+      lastName?: string;
+      /** @example Sm4rT.HuLk */
+      password: string;
     };
-    Error:
-      | {
-          ValidationError?: components["schemas"]["ValidationErrors"];
-        }
-      | {
-          DbError?: components["schemas"]["sqlx.Error"];
-        }
-      | "WrongCredentials"
-      | "MissingCredentials"
-      | "InvalidRefreshToken"
-      | "TokenCreation"
-      | "InvalidToken"
-      | "NotFound"
-      | {
-          HyperError?: components["schemas"]["hyper.Error"];
-        }
-      | {
-          MalformedData?: components["schemas"]["serde_json.Error"];
-        };
-    RevalidatePayload: {
+    RegisterResponse: {
+      /** Format: date-time */
+      createdAt: string;
+      firstName: string;
+      /** Format: uuid */
+      id: string;
+      lastName: string;
+      /** Format: date-time */
+      updatedAt?: string;
+    };
+    RevalidateBody: {
       /** Format: uuid */
       refreshToken: string;
     };
+    RevalidateResponse: {
+      accessToken: string;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string;
+      /** Format: int64 */
+      refreshTokenExpires: number;
+      tokenType: string;
+    };
     UserResponse: {
-      account: components["schemas"]["Account"];
+      /** @example major.tom@gmail.com */
+      email: string;
+      /** @example David */
       firstName?: string;
-      /** Format: uuid */
+      /**
+       * Format: uuid
+       * @example a00c9bc7-92ca-413a-97ec-66204314bbca
+       */
       id: string;
+      /** @example Bowie */
       lastName?: string;
     };
     UsersResponse: {
-      account: components["schemas"]["Account"];
-      /** Format: date-time */
+      /**
+       * Format: date-time
+       * @example 1665856394804
+       */
       createdAt: string;
+      /** @example major.tom@gmail.com */
+      email: string;
       /** @example David */
       firstName?: string;
       /**
@@ -80,19 +103,55 @@ export interface components {
       id: string;
       /** @example Bowie */
       lastName?: string;
-      /** Format: date-time */
+      /**
+       * Format: date-time
+       * @example 1664905980000
+       */
       updatedAt?: string;
     };
   };
 }
 
 export interface operations {
+  register: {
+    responses: {
+      /** Registration successful */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RegisterResponse"];
+        };
+      };
+      /** Invalid refresh token */
+      401: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+      /** Internal error */
+      500: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterBody"];
+      };
+    };
+  };
   authorize: {
     responses: {
       /** Authorization successful */
       200: {
         content: {
-          "application/json": components["schemas"]["AuthBody"];
+          "application/json": components["schemas"]["AuthResponse"];
+        };
+      };
+      /** Validation error */
+      400: {
+        content: {
+          "application/json": components["schemas"]["Error"];
         };
       };
       /** Invalid credentials */
@@ -101,10 +160,16 @@ export interface operations {
           "application/json": components["schemas"]["Error"];
         };
       };
+      /** Internal server error */
+      500: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["AuthPayload"];
+        "application/json": components["schemas"]["AuthBody"];
       };
     };
   };
@@ -113,19 +178,29 @@ export interface operations {
       /** Revalidation successful */
       200: {
         content: {
-          "application/json": components["schemas"]["AuthBody"];
+          "application/json": components["schemas"]["RevalidateResponse"];
         };
       };
       /** Invalid refresh token */
-      401: unknown;
+      401: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+      /** Internal server error */
+      500: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["RevalidatePayload"];
+        "application/json": components["schemas"]["RevalidateBody"];
       };
     };
   };
-  get_users: {
+  find_users: {
     responses: {
       /** List all users */
       200: {
@@ -133,9 +208,15 @@ export interface operations {
           "application/json": components["schemas"]["UsersResponse"][];
         };
       };
+      /** Internal error */
+      500: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
     };
   };
-  get_user: {
+  find_user_by_id: {
     parameters: {
       path: {
         /** The user's id */
@@ -150,7 +231,17 @@ export interface operations {
         };
       };
       /** User not found */
-      404: unknown;
+      404: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+      /** Internal Error */
+      500: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
     };
   };
 }

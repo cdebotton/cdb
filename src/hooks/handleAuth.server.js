@@ -1,6 +1,6 @@
 import { fetcher } from '$lib/api';
 
-let revalidate = fetcher.path('/accounts/revalidate').method('post').create();
+let revalidate = fetcher.path('/auth/revalidate').method('post').create();
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handleAuth({ event, resolve }) {

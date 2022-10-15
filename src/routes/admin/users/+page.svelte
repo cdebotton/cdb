@@ -33,7 +33,7 @@
 		{#each data.users as user}
 			{@const fullName = `${user.firstName} ${user.lastName}`}
 			<tr>
-				<td>{user.account.email}</td>
+				<td>{user.email}</td>
 				<td>{fullName}</td>
 				<td>{formatDate(user.createdAt)}</td>
 				<td>{formatDate(user.updatedAt)}</td>
