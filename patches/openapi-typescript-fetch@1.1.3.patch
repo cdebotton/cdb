@@ -1,0 +1,16 @@
+diff --git a/package.json b/package.json
+index 02362eca74de470630ad96275d08afffc89cdd28..76e3b2a5ce1c4886e0a18f94a538511b49fb5bf3 100644
+--- a/package.json
++++ b/package.json
+@@ -10,11 +10,6 @@
+   "license": "MIT",
+   "main": "./dist/cjs/index.js",
+   "module": "./dist/esm/index.js",
+-  "exports": {
+-    "browser": "./dist/esm/index.js",
+-    "import": "./dist/esm/index.js",
+-    "require": "./dist/cjs/index.js"
+-  },
+   "files": [
+     "dist"
+   ],
