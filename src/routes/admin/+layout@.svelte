@@ -4,8 +4,6 @@
 	import Link from '$lib/Link.svelte';
 	import NavItem from '$lib/NavItem.svelte';
 	import { animation } from '$lib/animation';
-	import ImageIcon from '$lib/icons/ImageIcon.svelte';
-	import UsersIcon from '$lib/icons/UsersIcon.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig}*/
 	let gradient = {
@@ -28,16 +26,12 @@
 			<ul>
 				<li>
 					<Link let:active href="/admin/users">
-						<NavItem {active} config={gradient} label="ユーザー">
-							<UsersIcon />
-						</NavItem>
+						<NavItem {active} config={gradient} label="ユーザー" />
 					</Link>
 				</li>
 				<li>
 					<Link let:active href="/admin/media">
-						<NavItem {active} config={gradient} label="メディア">
-							<ImageIcon />
-						</NavItem>
+						<NavItem {active} config={gradient} label="メディア" />
 					</Link>
 				</li>
 			</ul>
