@@ -43,3 +43,14 @@
 		<slot />
 	</main>
 </div>
+
+<style>
+	.container {
+		height: var(--size-full);
+		padding: var(--space-sm);
+	}
+
+	ul {
+		list-style: none;
+	}
+</style>

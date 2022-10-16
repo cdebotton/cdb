@@ -33,11 +33,74 @@
 		{#each data.users as user}
 			{@const fullName = `${user.firstName} ${user.lastName}`}
 			<tr>
-				<td>{user.email}</td>
-				<td>{fullName}</td>
-				<td>{formatDate(user.createdAt)}</td>
-				<td>{formatDate(user.updatedAt)}</td>
+				<td>
+					<a href={`/admin/users/${user.id}`}>
+						{user.email}
+					</a>
+				</td>
+				<td>
+					<a href={`/admin/users/${user.id}`}>
+						{fullName}
+					</a>
+				</td>
+				<td>
+					<a href={`/admin/users/${user.id}`}>
+						{formatDate(user.createdAt)}
+					</a>
+				</td>
+				<td>
+					<a href={`/admin/users/${user.id}`}>
+						{formatDate(user.updatedAt)}
+					</a>
+				</td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	table {
+		width: var(--size-full);
+		padding: Var(--space-sm) 0;
+		border-spacing: 0;
+	}
+
+	td,
+	th {
+		padding: var(--space-xs) var(--space-sm);
+		border-collapse: collapse;
+	}
+
+	td {
+		border-style: solid;
+		border-color: var(--color-surface);
+		border-top-width: 0;
+		border-right-width: 1px;
+		border-bottom-width: 1px;
+		border-left-width: 1px;
+	}
+	th {
+		border-style: solid;
+		border-color: var(--color-surface);
+		border-top-width: 0;
+		border-right-width: 0;
+		border-bottom-width: 1px;
+		border-left-width: 0;
+		text-align: left;
+	}
+
+	th:not(:first-child) {
+		border-left-width: 1px;
+	}
+
+	tr:hover {
+		background-color: var(--color-surface);
+	}
+
+	a {
+		display: inline-block;
+		width: var(--size-full);
+		height: var(--size-full);
+		text-decoration: none;
+	}
+</style>
