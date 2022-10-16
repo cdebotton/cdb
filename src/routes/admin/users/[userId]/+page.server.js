@@ -1,19 +1,22 @@
+import { error } from '@sveltejs/kit';
+
 import { fetcher } from '$lib/api';
 
 let getUser = fetcher.path('/users/{id}').method('get').create();
 
-/**
- * @typedef UserResponse
- * @type {import('openapi-typescript-fetch').FetchReturnType<typeof getUser>}
- * @typedef PageServerLoad
- * @type {import('./$types').PageServerLoad<UserResponse>}
- */
-
-/** @type {PageServerLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
-	let { data } = await getUser({ id: params.userId });
+	try {
+		let { data } = await getUser({ id: params.userId });
 
-	return data;
+		return data;
+	} catch (err) {
+		if (err instanceof getUser.Error) {
+			throw error(err.status, err.message);
+		}
+
+		throw err;
+	}
 }
 
 /** */

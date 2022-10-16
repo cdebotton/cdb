@@ -8,15 +8,15 @@
 
 <div>
 	<form method="POST" use:enhance>
-		<legend class="item-lg">User {data.user.id}</legend>
+		<legend class="item-lg">User {data.id}</legend>
 		<div class="item-lg">
-			<Input label="Email" name="email" bind:value={data.user.account.email} />
+			<Input label="Email" name="email" bind:value={data.email} />
 		</div>
 		<div class="item-md">
-			<Input label="First name" name="firstName" bind:value={data.user.firstName} />
+			<Input label="First name" name="firstName" bind:value={data.firstName} />
 		</div>
 		<div class="item-md">
-			<Input label="Last name" name="lastName" bind:value={data.user.lastName} />
+			<Input label="Last name" name="lastName" bind:value={data.lastName} />
 		</div>
 		<div class="item-sm">
 			<button type="reset">Reset</button>
