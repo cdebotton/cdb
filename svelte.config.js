@@ -10,6 +10,13 @@ const config = {
 			$hooks: 'src/hooks',
 			$msw: 'msw'
 		}
+	},
+	vitePlugin: {
+		experimental: {
+			inspector: {
+				holdMode: true
+			}
+		}
 	}
 };
 
