@@ -35,19 +35,23 @@
 		display: inline-grid;
 		overflow: hidden;
 		align-items: baseline;
-		padding: var(--space-none) var(--space-none) var(--space-none) 0;
+		padding: var(--space-none) var(--space-none) var(--space-none) var(--space-none);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radii-subtle);
 		background-color: var(--color-surface);
 		box-shadow: 0 0 10px var(--color-subtle-border);
 		grid-auto-flow: column;
-		grid-template-columns: min-content auto;
+		grid-template-columns: 6rem auto;
+	}
+
+	div:has(input:focus) {
+		border-color: var(--color-active-border);
 	}
 
 	label {
-		padding: var(--space-sm) var(--space-sm) var(--space-sm);
-		border-right: 1px solid var(--color-subtle-border);
-		background-color: var(--color-subtle-background);
+		padding: var(--space-sm) var(--space-none);
+		color: var(--color-text-subtle);
+		cursor: pointer;
 		font-size: var(--text-body-sm);
 		font-weight: var(--text-black);
 		opacity: 0;
@@ -61,9 +65,13 @@
 
 	input {
 		height: 100%;
-		padding: var(--space-xs) var(--space-md);
+		padding: var(--space-sm) var(--space-md);
 		border: none;
 		background-color: transparent;
-		color: currentColor;
+		color: var(--color-text);
+	}
+
+	input:focus {
+		outline: none;
 	}
 </style>

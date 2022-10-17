@@ -3,28 +3,26 @@
 	export let type;
 
 	export let round = false;
+	export let disabled = false;
 </script>
 
-<button class:round {type} on:click>
+<button class:round {disabled} {type} on:click>
 	<slot />
 </button>
 
 <style>
 	button {
 		display: inline-grid;
-		padding: var(--space-sm);
+		padding: var(--space-xs) var(--space-md);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radii-pill);
 		background-color: var(--color-surface);
 		color: var(--color-text);
 		cursor: pointer;
-		font-size: var(--size, 1em);
+		font-size: var(--size, var(--text-body-sm));
+		font-weight: var(--text-black);
 		place-content: center;
-	}
-
-	.round {
-		padding: var(--space-xs);
-		border-radius: var(--radii-round);
+		text-transform: uppercase;
 	}
 
 	button:hover {
@@ -32,7 +30,12 @@
 		background-color: var(--color-surface-hover);
 	}
 
-	button:active {
-		background-color: var(--color-surface-active);
+	button:disabled {
+		cursor: default;
+	}
+
+	.round {
+		padding: var(--space-xs);
+		border-radius: var(--radii-round);
 	}
 </style>
