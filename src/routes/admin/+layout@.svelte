@@ -1,9 +1,12 @@
 <script>
 	import LogoutButton from './LogoutButton.svelte';
 
+	import Icon from '$lib/Icon.svelte';
 	import Link from '$lib/Link.svelte';
 	import NavItem from '$lib/NavItem.svelte';
 	import { animation } from '$lib/animation';
+	import Camera from '$lib/icons/camera.svelte';
+	import Person from '$lib/icons/person.svelte';
 
 	/** @type {import('$lib/animation').AnimationConfig}*/
 	let gradient = {
@@ -26,12 +29,20 @@
 			<ul>
 				<li>
 					<Link let:active href="/admin/users">
-						<NavItem {active} config={gradient} label="ユーザー" />
+						<NavItem {active} config={gradient} label="ユーザー">
+							<Icon>
+								<Person />
+							</Icon>
+						</NavItem>
 					</Link>
 				</li>
 				<li>
 					<Link let:active href="/admin/media">
-						<NavItem {active} config={gradient} label="メディア" />
+						<NavItem {active} config={gradient} label="メディア">
+							<Icon>
+								<Camera />
+							</Icon>
+						</NavItem>
 					</Link>
 				</li>
 			</ul>
@@ -48,6 +59,14 @@
 	.container {
 		height: var(--size-full);
 		padding: var(--space-sm);
+	}
+
+	h1 {
+		font-size: var(--text-heading);
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	ul {

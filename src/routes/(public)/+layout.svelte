@@ -17,46 +17,55 @@
 	};
 </script>
 
-<header>
-	<Link let:active href="/" exact>
-		<Logo {config} {active} />
-	</Link>
-	<nav>
-		<ul>
-			<li>
-				<Link let:active href="/code">
-					<NavItem {config} {active} label="コード">Code</NavItem>
-				</Link>
-			</li>
-			<li>
-				<Link let:active href="/photography">
-					<NavItem {config} {active} label="写真撮影">Photography</NavItem>
-				</Link>
-			</li>
-			<li>
-				<Link let:active href="/video">
-					<NavItem {config} {active} label="ビデオ">Video</NavItem>
-				</Link>
-			</li>
-		</ul>
-		<ThemeButton />
-	</nav>
-</header>
-<main>
-	<slot />
-</main>
+<div>
+	<header>
+		<Link let:active href="/" exact>
+			<Logo {config} {active} />
+		</Link>
+		<nav>
+			<ul>
+				<li>
+					<Link let:active href="/code">
+						<NavItem {config} {active} label="コード">Code</NavItem>
+					</Link>
+				</li>
+				<li>
+					<Link let:active href="/photography">
+						<NavItem {config} {active} label="写真撮影">Photography</NavItem>
+					</Link>
+				</li>
+				<li>
+					<Link let:active href="/video">
+						<NavItem {config} {active} label="ビデオ">Video</NavItem>
+					</Link>
+				</li>
+			</ul>
+			<ThemeButton />
+		</nav>
+	</header>
+	<main>
+		<slot />
+	</main>
+</div>
 
 <style>
-	header {
-		position: fixed;
-		z-index: 1;
-		left: 0;
+	div {
 		display: grid;
-		height: 100vh;
-		padding: var(--space-md) var(--space-md);
+		width: 100%;
+		max-width: 1280px;
+		height: 100%;
+		align-items: start;
+		padding: var(--space-xl) var(--space-lg);
+		gap: var(--space-xl);
+		grid-template-columns: min-content auto;
+	}
+
+	header {
+		position: sticky;
+		display: grid;
+		height: 100%;
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
-		background-color: var(--color-background);
 		gap: var(--space-xs);
 		grid-auto-flow: row;
 		grid-template-rows: min-content auto;
@@ -90,7 +99,6 @@
 	main {
 		position: relative;
 		display: grid;
-		padding: var(--space-lg) 0;
 		isolation: isolate;
 	}
 </style>

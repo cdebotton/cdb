@@ -23,7 +23,7 @@
 	}
 
 	.label {
-		padding: var(--space-2xs) 0;
+		padding: var(--space-sm) 0;
 		font-size: var(--text-body);
 		font-weight: 300;
 		letter-spacing: var(--tracking-4);

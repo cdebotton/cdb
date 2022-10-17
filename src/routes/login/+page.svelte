@@ -43,12 +43,17 @@
 		display: grid;
 		width: var(--size-full);
 		height: var(--size-full);
-		grid-template-columns: minmax(20px 200px);
-		place-content: center stretch;
+		place-items: center center;
+	}
+
+	p {
+		justify-self: center;
 	}
 
 	form {
 		display: grid;
+		width: 100%;
+		max-width: 32rem;
 		padding: var(--space-xl);
 		gap: var(--space-sm);
 	}
